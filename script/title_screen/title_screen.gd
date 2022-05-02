@@ -7,5 +7,5 @@ func _ready() -> void:
 	$AnimationPlayer.connect("animation_finished", self, "_on_animation_finished")
 	get_tree().paused = true
 	
-func _on_animation_finsished() -> void:
+func _on_animation_finished() -> void:
 	get_tree().paused = false
