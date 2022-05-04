@@ -1,14 +1,12 @@
 class_name Player
-extends Node2D
-
-export var _speed : float = 200.0
+extends Character
 
 onready var _wheels : Wheels = $Wheels
 
-
 func _ready() -> void:
-	DialogueManager.player_dialogue_box = $Wheels/DialogueBox
-
+	DialogueManager.player_dialogue_box = $DialogueLayer/DialogueBox
+	$DialogueLayer/DialogueBox.speaker = self
+	body = _wheels
 
 func _physics_process(delta: float) -> void:
 	var movement_vec := Vector2.ZERO
@@ -29,3 +27,5 @@ func _physics_process(delta: float) -> void:
 		_wheels.sprite.rotation = collision.normal.rotated(PI/2.0).angle()
 	_wheels.velocity = _wheels.move_and_slide_with_snap(movement_vec * _speed, snap, Vector2.UP, false, 24, 1, true)
 	_wheels.particles.direction = _wheels.velocity.rotated(PI)
+	
+	facing = _wheels.velocity.snapped(Vector2.RIGHT).normalized()

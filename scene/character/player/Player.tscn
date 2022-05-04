@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://script/player/player.gd" type="Script" id=1]
+[ext_resource path="res://script/character/player/player.gd" type="Script" id=1]
 [ext_resource path="res://asset/visual/sprite/player/player_body.png" type="Texture" id=2]
 [ext_resource path="res://asset/visual/sprite/player/player_wheels.png" type="Texture" id=3]
-[ext_resource path="res://script/player/wheels.gd" type="Script" id=4]
+[ext_resource path="res://script/character/player/wheels.gd" type="Script" id=4]
 [ext_resource path="res://scene/ui/dialogue_box/DialogueBox.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -16,6 +16,20 @@ height = 26.0
 
 [node name="Player" type="Node2D"]
 script = ExtResource( 1 )
+
+[node name="DialogueLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogueBox" parent="DialogueLayer" instance=ExtResource( 5 )]
+
+[node name="Background" parent="DialogueLayer/DialogueBox" index="0"]
+margin_right = 384.0
+margin_bottom = 74.0
+
+[node name="RightSpeakingOffset" parent="DialogueLayer/DialogueBox" index="1"]
+position = Vector2( 207, 157 )
+
+[node name="LeftSpeakingOffset" parent="DialogueLayer/DialogueBox" index="2"]
+position = Vector2( 442, 149 )
 
 [node name="Body" type="RigidBody2D" parent="."]
 position = Vector2( 1, -65 )
@@ -59,8 +73,4 @@ node_b = NodePath("../../Body")
 disable_collision = false
 softness = 1.83
 
-[node name="DialogueBox" parent="Wheels" instance=ExtResource( 5 )]
-margin_left = -327.0
-margin_top = -293.0
-margin_right = -287.0
-margin_bottom = -253.0
+[editable path="DialogueLayer/DialogueBox"]
