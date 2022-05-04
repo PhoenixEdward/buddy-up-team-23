@@ -9,6 +9,26 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "AnimationArea",
+"language": "GDScript",
+"path": "res://script/animation/animation_area.gd"
+}, {
+"base": "Control",
+"class": "DialogueBox",
+"language": "GDScript",
+"path": "res://script/ui/dialogue_box/dialogue_box.gd"
+}, {
+"base": "Resource",
+"class": "DialoguePath",
+"language": "GDScript",
+"path": "res://script/ui/dialogue_box/dialogue_path.gd"
+}, {
+"base": "Node2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://script/player/player.gd"
+}, {
 "base": "Control",
 "class": "SplashScreen",
 "language": "GDScript",
@@ -18,10 +38,26 @@ _global_script_classes=[ {
 "class": "TitleScreen",
 "language": "GDScript",
 "path": "res://script/title_screen/title_screen.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Wheels",
+"language": "GDScript",
+"path": "res://script/player/wheels.gd"
+}, {
+"base": "Node2D",
+"class": "level",
+"language": "GDScript",
+"path": "res://script/level/level.gd"
 } ]
 _global_script_class_icons={
+"AnimationArea": "",
+"DialogueBox": "",
+"DialoguePath": "",
+"Player": "",
 "SplashScreen": "",
-"TitleScreen": ""
+"TitleScreen": "",
+"Wheels": "",
+"level": ""
 }
 
 [application]
@@ -31,12 +67,21 @@ config/description="Buddy Up Game Jam Spring 2022"
 run/main_scene="res://scene/title_screen/SplashScreen.tscn"
 config/icon="res://meta/logo.png"
 
+[autoload]
+
+DialogueManager="*res://script/autoload/dialogue_manager.gd"
+
 [display]
 
 window/size/width=1920
 window/size/height=1080
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Environment"
 
 [physics]
 
@@ -45,6 +90,7 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 quality/driver/driver_name="GLES2"
+2d/snapping/use_gpu_pixel_snap=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_environment="res://meta/default_env.tres"
