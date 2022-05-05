@@ -3,9 +3,12 @@ extends Area2D
 
 export(String) var animation_name
 export(NodePath) var animation_player_path
+## causes the collision shape to be reduced to zero on the x-axis. Necessary for camera panning.
+export(bool) var make_thin := false
 
 var _animation_player : AnimationPlayer
 var _direction := Vector2.ZERO
+
 
 func _ready() -> void:
 	connect("body_entered", self, "_on_body_entered")
