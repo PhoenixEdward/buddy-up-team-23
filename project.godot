@@ -76,7 +76,7 @@ _global_script_class_icons={
 
 config/name="Vanadium Labs Game"
 config/description="Buddy Up Game Jam Spring 2022"
-run/main_scene="res://scene/level/Level.tscn"
+run/main_scene="res://scene/level/Test.tscn"
 config/icon="res://meta/logo.png"
 
 [autoload]

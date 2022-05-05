@@ -63,9 +63,3 @@ node_a = NodePath("..")
 node_b = NodePath("../../Body")
 disable_collision = false
 softness = 1.83
-
-[node name="RightSpeakingOffset" type="Position2D" parent="."]
-position = Vector2( 97, -90 )
-
-[node name="LeftSpeakingOffset" type="Position2D" parent="."]
-position = Vector2( -106, -92 )
