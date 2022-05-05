@@ -6,8 +6,13 @@ signal expired()
 const TIME_PER_CHAR := 0.05
 const MAX_TAIL_RANGE := 256.0
 const MAX_SLEEP_TIME := 4.0
+const stye_box_template = preload("res://scene/ui/dialogue_box/test_stylebox.tres")
 
-export var rect_max_size : Vector2
+
+export var rect_max_size : Vector2 = Vector2(810, 0)
+export var dialogue_box_color : Color = Color8(36,36,36)
+export var font_color : Color = Color8(255,255,222)
+
 
 var _time_since_char := 0.0
 var _speaking_offset : Vector2
@@ -21,6 +26,10 @@ onready var _right_choice : TextureRect = $Background/RightChoice
 onready var _left_choice : TextureRect = $Background/LeftChoice
 
 func _ready() -> void:
+	_dialogue.add_color_override("font_color", font_color)
+	var style_box := stye_box_template.duplicate()
+	style_box.bg_color = dialogue_box_color
+	_background.add_stylebox_override("panel", style_box)
 	hide()
 
 
@@ -35,10 +44,10 @@ func _process(delta: float) -> void:
 
 	_speaking_offset = speaker.body.get_global_transform_with_canvas().origin - rect_position
 	
-	var connect_rect_pos := Vector2(speaker.body.get_global_transform_with_canvas().origin.x - rect_position.x, _background.rect_size.y)
+	var connect_rect_pos := Vector2(speaker.body.get_global_transform_with_canvas().origin.x - rect_position.x - _connet_rect.size.x /2.0, _background.rect_size.y)
 	
 	if connect_rect_pos.x < _background.rect_position.x:
-		connect_rect_pos.x = _background.rect_positon.x
+		connect_rect_pos.x = _background.rect_position.x
 	elif connect_rect_pos.x > _background.rect_position.x + _background.rect_size.x - 64:
 		connect_rect_pos.x = _background.rect_position.x + _background.rect_size.x - 64
 	
@@ -57,14 +66,15 @@ func _process(delta: float) -> void:
 			emit_signal("expired")
 			sleeping = false
 			return
-		
+
 
 func _draw() -> void:
-	draw_colored_polygon(PoolVector2Array([_connet_rect.position, _connet_rect.end, lerp(_connet_rect.position + _connet_rect.size, _speaking_offset, 0.5)]), Color8(255,255,222))
+	draw_colored_polygon(PoolVector2Array([_connet_rect.position, _connet_rect.end, lerp(_connet_rect.position + _connet_rect.size/2.0, _speaking_offset, 0.5)]), (_background.get_stylebox("panel") as StyleBoxFlat).bg_color)
+
 
 func speak(speech : String, face_right : bool,
 left_choice := false, right_choice := false) -> void:
-	_dialogue.rect_size = Vector2.ZERO
+	rect_size = rect_min_size
 	_right_choice.visible = right_choice
 	_left_choice.visible = left_choice
 	_dialogue.autowrap = false
@@ -75,7 +85,6 @@ left_choice := false, right_choice := false) -> void:
 	if _dialogue.get_font("font").get_string_size(_dialogue.text).x > rect_max_size.x:
 		rect_size.x = rect_max_size.x
 		_dialogue.autowrap = true
-			
 	show()
 
 

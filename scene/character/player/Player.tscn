@@ -20,7 +20,7 @@ script = ExtResource( 1 )
 [node name="DialogueLayer" type="CanvasLayer" parent="."]
 
 [node name="DialogueBox" parent="DialogueLayer" instance=ExtResource( 5 )]
-rect_max_size = Vector2( 810, 0 )
+font_color = Color( 1, 0.713726, 0.541176, 1 )
 
 [node name="Body" type="RigidBody2D" parent="."]
 position = Vector2( 1, -65 )
