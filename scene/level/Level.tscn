@@ -88,6 +88,7 @@ dialogue_paths = [ ExtResource( 5 ) ]
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 2, 1 )
 
 [node name="Sprite" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
 margin_left = -6260.0

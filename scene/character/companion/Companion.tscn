@@ -15,6 +15,7 @@ look_ahead = 128
 [node name="DialogueLayer" type="CanvasLayer" parent="."]
 
 [node name="DialogueBox" parent="DialogueLayer" instance=ExtResource( 3 )]
+font_color = Color( 0.937255, 0.556863, 0.968627, 1 )
 
 [node name="Body" type="RigidBody2D" parent="."]
 collision_mask = 2

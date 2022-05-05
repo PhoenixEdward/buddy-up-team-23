@@ -9,7 +9,6 @@
 [node name="DialogueBox" type="Control"]
 pause_mode = 2
 script = ExtResource( 1 )
-rect_max_size = Vector2( 0, 810 )
 
 [node name="Background" type="PanelContainer" parent="."]
 anchor_right = 1.0
