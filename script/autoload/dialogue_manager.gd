@@ -18,6 +18,9 @@ var _current_choice : int = 0
 #
 
 func play_dialogue(dialogue_message : DialoguePath, callback : FuncRef = null, interactable_db : DialogueBox = null) -> void:
+	if _active:
+		_exit()
+	
 	GameState.state = GameState.State.IN_DIALOGUE
 
 	if interactable_db:
@@ -29,7 +32,6 @@ func play_dialogue(dialogue_message : DialoguePath, callback : FuncRef = null, i
 	_dialogue_msg = dialogue_message
 	
 	if not _active:
-#		get_tree().paused = true
 		_active = true
 		
 	_push_dialogue_to_box(_line_idx)
@@ -43,7 +45,6 @@ func _exit() -> void:
 	_dialogue_msg = null
 	_line_idx = 0
 	_active_speaker_box = null
-	get_tree().paused = false
 	_active = false
 	_current_choice = 0
 	if _callback != null:

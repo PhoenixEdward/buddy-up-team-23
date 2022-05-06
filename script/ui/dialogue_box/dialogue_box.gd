@@ -75,6 +75,7 @@ func _draw() -> void:
 func speak(speech : String, face_right : bool,
 left_choice := false, right_choice := false) -> void:
 	rect_size = rect_min_size
+	sleeping = false
 	_right_choice.visible = right_choice
 	_left_choice.visible = left_choice
 	_dialogue.autowrap = false

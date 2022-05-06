@@ -14,8 +14,10 @@ func _ready() -> void:
 	connect("body_entered", self, "_on_body_entered")
 	connect('body_exited', self, "_on_body_exited")
 	_animation_player = get_node(animation_player_path)
-	$CollisionShape2D.shape.extents.x = 0
-	
+	if make_thin and $CollisionShape2D.shape is RectangleShape2D:
+		$CollisionShape2D.shape.extents.x = 0
+
+
 func _on_body_entered(body : Node) -> void:
 	if body is Wheels:
 		_try_play_animation(body as Wheels)
