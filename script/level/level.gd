@@ -10,8 +10,8 @@ func _ready() -> void:
 		_processed_paths[i] = 0
 
 
-
 func play_dialogue(path_index : int) -> void:
 	if _processed_paths[path_index] == 0:
 		DialogueManager.play_dialogue(dialogue_paths[path_index])
 		_processed_paths[path_index] += 1
+

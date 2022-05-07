@@ -1,34 +1,53 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://script/character/player/player.gd" type="Script" id=1]
 [ext_resource path="res://asset/visual/sprite/player/player_body.png" type="Texture" id=2]
 [ext_resource path="res://asset/visual/sprite/player/player_wheels.png" type="Texture" id=3]
 [ext_resource path="res://script/character/player/wheels.gd" type="Script" id=4]
 [ext_resource path="res://scene/ui/dialogue_box/DialogueBox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://asset/visual/sprite/ui/charge_gauge.png" type="Texture" id=6]
+[ext_resource path="res://asset/visual/sprite/ui/charge_bar.png" type="Texture" id=7]
+[ext_resource path="res://script/state_machine/state_machine.gd" type="Script" id=8]
+[ext_resource path="res://script/state_machine/player_state/move_player_state.gd" type="Script" id=9]
+[ext_resource path="res://script/state_machine/player_state/airborne_player_state.gd" type="Script" id=10]
+[ext_resource path="res://script/character/player/player_body.gd" type="Script" id=11]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 33.0
-height = 60.0
+[sub_resource type="CircleShape2D" id=1]
+radius = 40.05
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 21.0
-height = 26.0
+[sub_resource type="CircleShape2D" id=2]
+radius = 22.2036
 
 [node name="Player" type="Node2D" groups=["player"]]
 script = ExtResource( 1 )
-_speed = 300.0
+charge_gauge_offset = Vector2( 96, -128 )
 
-[node name="DialogueLayer" type="CanvasLayer" parent="."]
+[node name="UIlayer" type="CanvasLayer" parent="."]
 
-[node name="DialogueBox" parent="DialogueLayer" instance=ExtResource( 5 )]
+[node name="DialogueBox" parent="UIlayer" instance=ExtResource( 5 )]
 font_color = Color( 1, 0.713726, 0.541176, 1 )
 
+[node name="ChargeGauge" type="TextureProgress" parent="UIlayer"]
+visible = false
+margin_left = -94.0
+margin_top = -57.0
+margin_right = -54.0
+margin_bottom = 71.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 7 )
+fill_mode = 3
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("../Wheels")
+node_b = NodePath("../Body")
+
 [node name="Body" type="RigidBody2D" parent="."]
-position = Vector2( 1, -65 )
+position = Vector2( -1, -38 )
+collision_layer = 0
 collision_mask = 0
 mode = 2
-can_sleep = false
 angular_damp = 100.0
+script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 shape = SubResource( 1 )
@@ -59,8 +78,12 @@ shape = SubResource( 2 )
 [node name="Sprite" type="Sprite" parent="Wheels"]
 texture = ExtResource( 3 )
 
-[node name="DampedSpringJoint2D" type="PinJoint2D" parent="Wheels"]
-node_a = NodePath("..")
-node_b = NodePath("../../Body")
-disable_collision = false
-softness = 1.83
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 8 )
+initial_state = NodePath("Move")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
+
+[node name="Airborne" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )

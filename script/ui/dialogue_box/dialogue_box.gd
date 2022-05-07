@@ -7,7 +7,7 @@ const TIME_PER_CHAR := 0.05
 const MAX_TAIL_RANGE := 256.0
 const MAX_SLEEP_TIME := 4.0
 const stye_box_template = preload("res://scene/ui/dialogue_box/test_stylebox.tres")
-
+const MARGIN := 128.0
 
 export var rect_max_size : Vector2 = Vector2(810, 0)
 export var dialogue_box_color : Color = Color8(36,36,36)
@@ -37,19 +37,19 @@ func _process(delta: float) -> void:
 
 	rect_position = Vector2(speaker.body.get_global_transform_with_canvas().origin.x - _background.rect_size.x / 2.0, 128) 
 	
-	if rect_position.x < 0:
-		rect_position.x = 0
-	elif rect_position.x + _background.rect_size.x > get_viewport_rect().size.x:
-		rect_position.x = get_viewport_rect().size.x - _background.rect_size.x
+	if rect_position.x < MARGIN:
+		rect_position.x = MARGIN
+	elif rect_position.x + _background.rect_size.x > get_viewport_rect().size.x - MARGIN:
+		rect_position.x = get_viewport_rect().size.x - _background.rect_size.x - MARGIN
 
 	_speaking_offset = speaker.body.get_global_transform_with_canvas().origin - rect_position
 	
 	var connect_rect_pos := Vector2(speaker.body.get_global_transform_with_canvas().origin.x - rect_position.x - _connet_rect.size.x /2.0, _background.rect_size.y)
 	
-	if connect_rect_pos.x < _background.rect_position.x:
-		connect_rect_pos.x = _background.rect_position.x
-	elif connect_rect_pos.x > _background.rect_position.x + _background.rect_size.x - 64:
-		connect_rect_pos.x = _background.rect_position.x + _background.rect_size.x - 64
+	if connect_rect_pos.x < _background.rect_position.x + _background.get_stylebox("panel").corner_radius_bottom_left:
+		connect_rect_pos.x = _background.rect_position.x + _background.get_stylebox("panel").corner_radius_bottom_left
+	elif connect_rect_pos.x > _background.rect_position.x + _background.rect_size.x - 64 - _background.get_stylebox("panel").corner_radius_bottom_right:
+		connect_rect_pos.x = _background.rect_position.x + _background.rect_size.x - 64- + _background.get_stylebox("panel").corner_radius_bottom_right
 	
 	_connet_rect.position = connect_rect_pos
 	update()

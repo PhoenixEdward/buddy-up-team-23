@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource( 1 )
 is_choice = false
-speakers = [ 1, 1, 1, 1, 0, 0, 1 ]
-speech = [ "San Franciscooo!", "I am a robot :)", "My text box can get reeeeeeeeeeeeeeeaalllly big if you just keep typing!", "It stays within the screen too if you move too close to the edge of the screen", "No one cares.", "But we should probably keep talking to simulate banter", "agreed." ]
+speakers = [ 0, 1, 0 ]
+speech = [ "Please don't jump", "Hey Betsy. I was talking about how the size of this dialogue box changes and stays within the bounds of the screen", "It's pretty neat" ]
 next_paths = [  ]

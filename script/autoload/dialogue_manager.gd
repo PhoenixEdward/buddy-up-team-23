@@ -13,9 +13,6 @@ var _active_speaker_box : DialogueBox
 var npc_dialogue_box : DialogueBox
 var _current_choice : int = 0
 
-#func _ready() -> void:
-#	pause_mode = Node.PAUSE_MODE_PROCESS
-#
 
 func play_dialogue(dialogue_message : DialoguePath, callback : FuncRef = null, interactable_db : DialogueBox = null) -> void:
 	if _active:
@@ -115,12 +112,12 @@ func _input(event: InputEvent) -> void:
 			else:
 				_next_path(_current_choice)
 			get_tree().set_input_as_handled()
-#		if event.is_action_pressed("ui_left"):
+#		if event.is_action_pressed("move_left"):
 #			if _current_choice > 0:
 #				_current_choice -= 1
 #				_push_dialogue_to_box(_current_choice)
 #			get_tree().set_input_as_handled()
-#		if event.is_action_pressed("ui_right"):
+#		if event.is_action_pressed("move_right"):
 #			if _current_choice < _dialogue_msg.next_paths.size() - 1:
 #				_current_choice += 1
 #				_push_dialogue_to_box(_current_choice)

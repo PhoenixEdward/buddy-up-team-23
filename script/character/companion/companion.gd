@@ -17,6 +17,9 @@ var _interest := []
 var _danger := []
 # array of raycasts. populated by duplicating the "danger_ray"
 var _danger_rays := []
+var collision_disabled = false
+var _companion_offset : Vector2
+var _reset := false
 
 onready var danger_ray : RayCast2D = $Body/DangerRay
 onready var target_ray : RayCast2D = $Body/TargetRay
@@ -24,8 +27,10 @@ onready var target_ray : RayCast2D = $Body/TargetRay
 func _ready() -> void:
 	DialogueManager.npc_dialogue_box = $DialogueLayer/DialogueBox
 	$DialogueLayer/DialogueBox.speaker = self
-	_player = get_tree().get_nodes_in_group("player")[0] as Player
 	body = $Body
+	_player = get_tree().get_nodes_in_group("player")[0] as Player
+	_companion_offset = body.global_position - _player.body.global_position
+	EventManager.connect("player_died", self, "_on_player_died")
 	
 	# create our steering mechanism
 	_interest.resize(avoidance_resolution)
@@ -41,16 +46,26 @@ func _ready() -> void:
 		body.add_child(_danger_rays[i])
 
 
+func _on_player_died() -> void:
+	_reset = true
+
+
 func _physics_process(delta: float) -> void:
+	if _reset:
+		body.global_position = _player.body.global_position + _companion_offset
+		body.linear_velocity = Vector2.ZERO
+		_reset = false
+		
 	if _player.body.global_position.distance_to(body.global_position) > 512.0:
-		body.linear_velocity = lerp(body.linear_velocity.normalized(), handle_pursuit(_player.body.global_position + Vector2(0, 64), _player.body), 0.05) * _speed * 2.0
+		body.linear_velocity = lerp(body.linear_velocity.normalized(), handle_pursuit(_player.body.global_position + Vector2(0, 64), _player.body), 0.05) * speed * 2.0
 	elif _player.body.global_position.distance_to(body.global_position) > 256.0:
-		body.linear_velocity = lerp(body.linear_velocity.normalized(), handle_pursuit(_player.body.global_position + Vector2(0, 64), _player.body), 0.05) * _speed
+		body.linear_velocity = lerp(body.linear_velocity.normalized(), handle_pursuit(_player.body.global_position + Vector2(0, 64), _player.body), 0.05) * speed
 	else:
 		if body.linear_velocity.length() > 1:
 			body.linear_velocity = lerp(body.linear_velocity, Vector2.ZERO , 0.05)
 		else:
 			body.linear_velocity = Vector2.ZERO
+
 
 # does not require raycasts
 func _set_interest(destination : Vector2) -> void:

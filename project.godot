@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "PlayerState",
+"class": "AirbornePlayerState",
+"language": "GDScript",
+"path": "res://script/state_machine/player_state/airborne_player_state.gd"
+}, {
 "base": "Area2D",
 "class": "AnimationArea",
 "language": "GDScript",
@@ -20,14 +25,24 @@ _global_script_classes=[ {
 "path": "res://script/character/character.gd"
 }, {
 "base": "AnimationArea",
+"class": "CollapsableBridge",
+"language": "GDScript",
+"path": "res://script/level/obstacle/collapsable_bridge.gd"
+}, {
+"base": "AnimationArea",
 "class": "Collectable",
 "language": "GDScript",
-"path": "res://scene/level/collectable.gd"
+"path": "res://script/animation/collectable.gd"
 }, {
 "base": "Character",
 "class": "Companion",
 "language": "GDScript",
 "path": "res://script/character/companion/companion.gd"
+}, {
+"base": "AnimationArea",
+"class": "DeathArea",
+"language": "GDScript",
+"path": "res://script/animation/death_area.gd"
 }, {
 "base": "Control",
 "class": "DialogueBox",
@@ -39,22 +54,52 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script/ui/dialogue_box/dialogue_path.gd"
 }, {
-"base": "Reference",
+"base": "PlayerState",
+"class": "MovePlayerState",
+"language": "GDScript",
+"path": "res://script/state_machine/player_state/move_player_state.gd"
+}, {
+"base": "Node2D",
+"class": "ObstacleSpawner",
+"language": "GDScript",
+"path": "res://script/level/obstacle/obstacle_spawner.gd"
+}, {
+"base": "Character",
 "class": "Player",
 "language": "GDScript",
 "path": "res://script/character/player/player.gd"
+}, {
+"base": "RigidBody2D",
+"class": "PlayerBody",
+"language": "GDScript",
+"path": "res://script/character/player/player_body.gd"
+}, {
+"base": "State",
+"class": "PlayerState",
+"language": "GDScript",
+"path": "res://script/state_machine/player_state/player_state.gd"
 }, {
 "base": "Control",
 "class": "SplashScreen",
 "language": "GDScript",
 "path": "res://script/title_screen/splash_screen.gd"
 }, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://script/state_machine/state.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://script/state_machine/state_machine.gd"
+}, {
 "base": "Control",
 "class": "TitleScreen",
 "language": "GDScript",
 "path": "res://script/title_screen/title_screen.gd"
 }, {
-"base": "Reference",
+"base": "KinematicBody2D",
 "class": "Wheels",
 "language": "GDScript",
 "path": "res://script/character/player/wheels.gd"
@@ -65,14 +110,23 @@ _global_script_classes=[ {
 "path": "res://script/level/level.gd"
 } ]
 _global_script_class_icons={
+"AirbornePlayerState": "",
 "AnimationArea": "",
 "Character": "",
+"CollapsableBridge": "",
 "Collectable": "",
 "Companion": "",
+"DeathArea": "",
 "DialogueBox": "",
 "DialoguePath": "",
+"MovePlayerState": "",
+"ObstacleSpawner": "",
 "Player": "",
+"PlayerBody": "",
+"PlayerState": "",
 "SplashScreen": "",
+"State": "",
+"StateMachine": "",
 "TitleScreen": "",
 "Wheels": "",
 "level": ""
@@ -97,6 +151,36 @@ window/size/width=1920
 window/size/height=1080
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[input]
+
+ui_accept={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777222,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+move_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+jump={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+boost={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 

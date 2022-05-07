@@ -29,10 +29,11 @@ func _on_body_exited(body : Node) -> void:
 
 
 func _try_play_animation(body : Wheels) -> void:
-	if not _direction.dot(body.velocity) > 0:
-		if body.velocity.dot(Vector2.RIGHT) > 0:
-			_animation_player.play(animation_name)
-			_direction = Vector2.RIGHT
-		else:
-			_animation_player.play(animation_name, -1, -1, true)
-			_direction = Vector2.LEFT
+	if animation_name != "":
+		if not _direction.dot(body.velocity) > 0:
+			if body.velocity.dot(Vector2.RIGHT) > 0:
+				_animation_player.play(animation_name)
+				_direction = Vector2.RIGHT
+			else:
+				_animation_player.play(animation_name, -1, -1, true)
+				_direction = Vector2.LEFT

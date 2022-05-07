@@ -1,31 +1,49 @@
 class_name Player
 extends Character
 
-onready var _wheels : Wheels = $Wheels
+signal died()
+
+export var respawn_point_path : NodePath
+export(float, 1000, 2000) var boost : float = 1000
+export var charge_gauge_offset : Vector2
+export var gravity : float = 1200
+export(int, 1,100) var boost_charge_rate : int = 1
+export(int, 1,100) var boost_depletion_rate : int = 4
+export(float,0,1) var acceleration : float = .1
+export(float,0,1) var friction : float = .025
+export(float, 100,2000) var max_jump_strength : float = 1800
+export(float, 100,2000) var min_jump_strength : float = 600
+export(float, 0, 1) var coyote_time = 0.2
+export(float, 0, 1) var zelda_roll = 0.15
+export(float, 0, 1) var jump_steer = 0.2
+
+var respawn := false
+var speed_boost_unlocked := false
+
+onready var wheels : Wheels = $Wheels
+onready var player_body : RigidBody2D = $Body
+onready var charge_gauge : TextureProgress = $UIlayer/ChargeGauge
+onready var respawn_point : Position2D = get_node(respawn_point_path) as Position2D
 
 func _ready() -> void:
-	DialogueManager.player_dialogue_box = $DialogueLayer/DialogueBox
-	$DialogueLayer/DialogueBox.speaker = self
-	body = _wheels
+	DialogueManager.player_dialogue_box = $UIlayer/DialogueBox
+	$UIlayer/DialogueBox.speaker = self
+	body = wheels
+	facing = 1
+	charge_gauge.value = charge_gauge.max_value
 
-func _physics_process(delta: float) -> void:
-	var movement_vec := Vector2.ZERO
-	
-	if Input.is_action_pressed("ui_right"):
-		movement_vec.x = 1
-	elif Input.is_action_pressed("ui_left"):
-		movement_vec.x = -1
-	
-	if not _wheels.is_on_floor():
-		movement_vec += Vector2.DOWN * 9.8
-		
 
-	var collision := _wheels.get_last_slide_collision()
-	var snap := Vector2.DOWN
-	if collision != null:
-		snap = collision.normal.rotated(PI)
-		_wheels.sprite.rotation = collision.normal.rotated(PI/2.0).angle()
-	_wheels.velocity = _wheels.move_and_slide_with_snap(movement_vec * _speed, snap, Vector2.UP, false, 24, 1, true)
-	_wheels.particles.direction = _wheels.velocity.rotated(PI)
-	
-	facing = _wheels.velocity.snapped(Vector2.RIGHT).normalized()
+
+func change_respawn(path : NodePath) -> void:
+	respawn_point = get_node(path)
+
+
+func unlock_speed_boost() -> void:
+	speed_boost_unlocked = true
+
+
+func apply_jump_impulse() -> void:
+	wheels.velocity += max_jump_strength * Vector2.UP + ((facing * Vector2.RIGHT) * wheels.velocity.x * zelda_roll)
+
+func die() -> void:
+	respawn = true
