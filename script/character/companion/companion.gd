@@ -18,7 +18,7 @@ var _danger := []
 # array of raycasts. populated by duplicating the "danger_ray"
 var _danger_rays := []
 var collision_disabled = false
-var _companion_offset : Vector2
+var _companion_offset : Vector2 = Vector2(-128, 96)
 var _reset := false
 
 onready var danger_ray : RayCast2D = $Body/DangerRay
@@ -29,7 +29,6 @@ func _ready() -> void:
 	$DialogueLayer/DialogueBox.speaker = self
 	body = $Body
 	_player = get_tree().get_nodes_in_group("player")[0] as Player
-	_companion_offset = body.global_position - _player.body.global_position
 	EventManager.connect("player_died", self, "_on_player_died")
 	
 	# create our steering mechanism
