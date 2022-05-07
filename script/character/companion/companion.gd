@@ -18,7 +18,7 @@ var _danger := []
 # array of raycasts. populated by duplicating the "danger_ray"
 var _danger_rays := []
 var collision_disabled = false
-var _companion_offset : Vector2 = Vector2(-128, 96)
+var _companion_offset : Vector2 = Vector2(-128, -96)
 var _reset := false
 
 onready var danger_ray : RayCast2D = $Body/DangerRay

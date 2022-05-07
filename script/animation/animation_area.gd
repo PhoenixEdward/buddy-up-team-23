@@ -19,19 +19,19 @@ func _ready() -> void:
 
 
 func _on_body_entered(body : Node) -> void:
-	if body is Wheels:
-		_try_play_animation(body as Wheels)
+	if body is PlayerBody:
+		_try_play_animation(body as PlayerBody)
 
 
 func _on_body_exited(body : Node) -> void:
-	if body is Wheels:
-		_try_play_animation(body as Wheels)
+	if body is PlayerBody:
+		_try_play_animation(body as PlayerBody)
 
 
-func _try_play_animation(body : Wheels) -> void:
+func _try_play_animation(body : PlayerBody) -> void:
 	if animation_name != "":
-		if not _direction.dot(body.velocity) > 0:
-			if body.velocity.dot(Vector2.RIGHT) > 0:
+		if not _direction.dot(body.linear_velocity) > 0:
+			if body.linear_velocity.dot(Vector2.RIGHT) > 0:
 				_animation_player.play(animation_name)
 				_direction = Vector2.RIGHT
 			else:
