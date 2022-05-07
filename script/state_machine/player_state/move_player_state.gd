@@ -7,24 +7,25 @@ var coyote := false
 
 func update(delta: float) -> void:
 	if _player.speed_boost_unlocked:
-		if _player.charge_gauge.value > _player.boost_charge_rate:
+		if _player.charge_gauge.value > _player.boost_depletion_rate:
 			if Input.is_action_just_pressed("boost"):
 				_player.charge_gauge.show()
-				_player.charge_gauge.value -= _player.boost_charge_rate
+				_player.charge_gauge.value -= _player.boost_depletion_rate
 				boosting = true
-			elif Input.is_action_pressed("boost"):
-				if _player.charge_gauge.value > 0:
-					_player.charge_gauge.value -= _player.boost_charge_rate
+			elif Input.is_action_pressed("boost") and boosting:
+				if _player.charge_gauge.value - _player.boost_depletion_rate > _player.boost_depletion_rate:
+					_player.charge_gauge.value -= _player.boost_depletion_rate
 				else:
 					_player.charge_gauge.value = 0
 					boosting = false
-					_player.charge_gauge.hide()
 			elif Input.is_action_just_released("boost"):
 				boosting = false
 			else:
 				_replenish_charge_gauge()
 		else:
 			_replenish_charge_gauge()
+	if _player.charge_gauge.visible:
+		_player.charge_gauge.rect_position = current_gauge_offset + _player.body.get_global_transform_with_canvas().origin
 			
 
 	if Input.is_action_just_pressed("jump"):
@@ -80,3 +81,4 @@ func physics_update(delta:float) -> void:
 	
 func exit() -> void:
 	coyote_buffer = 0
+	boosting = false

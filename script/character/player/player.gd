@@ -4,11 +4,11 @@ extends Character
 signal died()
 
 export var respawn_point_path : NodePath
-export(float, 1000, 2000) var boost : float = 1000
+export(float, 1000, 2000) var boost : float = 1200
 export var charge_gauge_offset : Vector2
 export var gravity : float = 1200
 export(int, 1,100) var boost_charge_rate : int = 1
-export(int, 1,100) var boost_depletion_rate : int = 4
+export(int, 1,100) var boost_depletion_rate : int = 3
 export(float,0,1) var acceleration : float = .1
 export(float,0,1) var friction : float = .025
 export(float, 100,2000) var max_jump_strength : float = 1800
@@ -16,9 +16,10 @@ export(float, 100,2000) var min_jump_strength : float = 600
 export(float, 0, 1) var coyote_time = 0.2
 export(float, 0, 1) var zelda_roll = 0.15
 export(float, 0, 1) var jump_steer = 0.2
+export var speed_boost_unlocked := true
 
 var respawn := false
-var speed_boost_unlocked := false
+
 
 onready var wheels : Wheels = $Wheels
 onready var player_body : RigidBody2D = $Body

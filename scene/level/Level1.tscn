@@ -83,10 +83,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ NodePath("../FirstSpawn") ],
+"args": [ NodePath("../Spawn") ],
 "method": "change_respawn"
 }, {
-"args": [ NodePath("../FirstSpawn2") ],
+"args": [ NodePath("../Spawn2") ],
 "method": "change_respawn"
 } ]
 }
@@ -376,6 +376,7 @@ tile_data = PoolIntArray( -65249, 0, 65537, -65248, 0, 2, -65247, 0, 2, -65246, 
 
 [node name="CollapsableBridge" parent="TileMap" instance=ExtResource( 5 )]
 position = Vector2( 3232, 928 )
+animation_player_path = NodePath("../../AnimationPlayer")
 collapsable = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -410,7 +411,7 @@ position = Vector2( 0, 25.5 )
 shape = SubResource( 4 )
 
 [node name="AnimationArea2" type="Area2D" parent="."]
-position = Vector2( 5344, 512 )
+position = Vector2( 5504, 488 )
 script = ExtResource( 2 )
 animation_name = "Pan2"
 animation_player_path = NodePath("../AnimationPlayer")
