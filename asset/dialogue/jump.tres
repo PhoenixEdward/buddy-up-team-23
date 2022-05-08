@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource( 1 )
 is_choice = false
-speakers = [ 1, 0 ]
-speech = [ "Welcome to Gear City!", "Who are you talking to?" ]
+speakers = [ 0 ]
+speech = [ "Jump Junket!" ]
 next_paths = [  ]

@@ -4,8 +4,8 @@
 [ext_resource path="res://asset/visual/sprite/collectable/collectable.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 13.0
-height = 30.0
+radius = 25.0
+height = 82.0
 
 [node name="Collectable" type="Area2D"]
 script = ExtResource( 1 )
