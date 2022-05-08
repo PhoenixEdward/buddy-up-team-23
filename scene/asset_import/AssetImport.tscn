@@ -1,22 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scene/asset_import/asset_import.stylebox" type="StyleBox" id=1]
 [ext_resource path="res://script/asset_import/asset_import.gd" type="Script" id=2]
 [ext_resource path="res://theme/font/dialogue.tres" type="DynamicFont" id=3]
+[ext_resource path="res://scene/asset_import/pixel_width_edit.gd" type="Script" id=4]
 
 [node name="AssetImport" type="Control"]
-anchor_right = 0.25
+anchor_right = 0.5
 anchor_bottom = 1.0
 margin_right = 12.0
 script = ExtResource( 2 )
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 525.0
 custom_styles/panel = ExtResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
-margin_right = 563.0
+margin_right = 972.0
 margin_bottom = 1080.0
 custom_constants/margin_right = 32
 custom_constants/margin_top = 128
@@ -25,28 +26,112 @@ custom_constants/margin_left = 32
 [node name="GraphicsImport" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 margin_left = 32.0
 margin_top = 128.0
-margin_right = 531.0
+margin_right = 940.0
 margin_bottom = 1080.0
 
 [node name="PlayerBodySelectButton" type="Button" parent="PanelContainer/MarginContainer/GraphicsImport"]
-margin_right = 499.0
+margin_right = 908.0
 margin_bottom = 64.0
 custom_fonts/font = ExtResource( 3 )
 text = "Player Body Select"
 
 [node name="PlayerWheelsSelectButton" type="Button" parent="PanelContainer/MarginContainer/GraphicsImport"]
 margin_top = 68.0
-margin_right = 499.0
+margin_right = 908.0
 margin_bottom = 132.0
 custom_fonts/font = ExtResource( 3 )
 text = "Player Wheels Select"
 
 [node name="CompanionBodySelectButton" type="Button" parent="PanelContainer/MarginContainer/GraphicsImport"]
 margin_top = 136.0
-margin_right = 499.0
+margin_right = 908.0
 margin_bottom = 200.0
 custom_fonts/font = ExtResource( 3 )
 text = "Companion Select"
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/GraphicsImport"]
+margin_top = 204.0
+margin_right = 908.0
+margin_bottom = 262.0
+rect_min_size = Vector2( 384, 0 )
+custom_fonts/font = ExtResource( 3 )
+text = "Image Pixel Width"
+align = 1
+
+[node name="PlayerBodyPixelWidth" type="HBoxContainer" parent="PanelContainer/MarginContainer/GraphicsImport"]
+margin_top = 266.0
+margin_right = 908.0
+margin_bottom = 330.0
+rect_min_size = Vector2( 0, 64 )
+script = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/GraphicsImport/PlayerBodyPixelWidth"]
+margin_top = 3.0
+margin_right = 384.0
+margin_bottom = 61.0
+rect_min_size = Vector2( 384, 0 )
+custom_fonts/font = ExtResource( 3 )
+text = "Player Body"
+
+[node name="PixelWidthEdit" type="SpinBox" parent="PanelContainer/MarginContainer/GraphicsImport/PlayerBodyPixelWidth"]
+margin_left = 388.0
+margin_right = 908.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+max_value = 1080.0
+value = 96.0
+rounded = true
+
+[node name="PlayerWheelPixelWidth" type="HBoxContainer" parent="PanelContainer/MarginContainer/GraphicsImport"]
+margin_top = 334.0
+margin_right = 908.0
+margin_bottom = 398.0
+rect_min_size = Vector2( 0, 64 )
+script = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/GraphicsImport/PlayerWheelPixelWidth"]
+margin_top = 3.0
+margin_right = 384.0
+margin_bottom = 61.0
+rect_min_size = Vector2( 384, 0 )
+custom_fonts/font = ExtResource( 3 )
+text = "Player Wheel"
+
+[node name="PixelWidthEdit" type="SpinBox" parent="PanelContainer/MarginContainer/GraphicsImport/PlayerWheelPixelWidth"]
+margin_left = 388.0
+margin_right = 908.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+max_value = 1080.0
+value = 64.0
+rounded = true
+
+[node name="CompanionPixelWidth" type="HBoxContainer" parent="PanelContainer/MarginContainer/GraphicsImport"]
+margin_top = 402.0
+margin_right = 908.0
+margin_bottom = 466.0
+rect_min_size = Vector2( 0, 64 )
+script = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/GraphicsImport/CompanionPixelWidth"]
+margin_top = 3.0
+margin_right = 384.0
+margin_bottom = 61.0
+rect_min_size = Vector2( 384, 0 )
+custom_fonts/font = ExtResource( 3 )
+text = "Companion"
+
+[node name="PixelWidthEdit" type="SpinBox" parent="PanelContainer/MarginContainer/GraphicsImport/CompanionPixelWidth"]
+margin_left = 388.0
+margin_right = 908.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+max_value = 1080.0
+value = 48.0
+rounded = true
 
 [node name="FileDialog" type="FileDialog" parent="."]
 anchor_right = 1.0
@@ -64,5 +149,8 @@ current_path = "/home/phoenix/Documents/GameDev/buddy-up-team-23/"
 [connection signal="pressed" from="PanelContainer/MarginContainer/GraphicsImport/PlayerBodySelectButton" to="." method="_on__player_body_select_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/GraphicsImport/PlayerWheelsSelectButton" to="." method="_on_PlayerWheelsSelectButton_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/GraphicsImport/CompanionBodySelectButton" to="." method="_on_CompanionBodySelectButton_pressed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/GraphicsImport/PlayerBodyPixelWidth/PixelWidthEdit" to="." method="_on_PlayerBodyPixelWidthEdit_value_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/GraphicsImport/PlayerWheelPixelWidth/PixelWidthEdit" to="." method="_on_PlayerWheelPixelWidthEdit_value_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/GraphicsImport/CompanionPixelWidth/PixelWidthEdit" to="." method="_on_CompanionPixelWidthEdit_value_changed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_selected"]
 [connection signal="popup_hide" from="FileDialog" to="." method="_on_FileDialog_popup_hide"]
