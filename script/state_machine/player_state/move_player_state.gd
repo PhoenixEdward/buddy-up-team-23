@@ -59,7 +59,6 @@ func physics_update(delta:float) -> void:
 	
 #	if _player.wheels.get_floor_normal().dot(_player.wheels.velocity) > 0:
 #		_player.wheels.velocity.y = lerp(_player.wheels.velocity.y, _player.gravity, _player.acceleration)
-	print(snap)
 	var velocity := movement_vec
 	velocity.x *= _player.speed
 	velocity.x += _player.boost * _player.facing if boosting else 0

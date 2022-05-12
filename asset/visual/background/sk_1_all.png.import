@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Middle landscape.png-2cd82dab34ae8d3e5e2961e914a04e07.stex"
+path="res://.import/sk_1_all.png-358963ca9ad6778cfc54d8bd69810094.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/visual/background/Middle landscape.png"
-dest_files=[ "res://.import/Middle landscape.png-2cd82dab34ae8d3e5e2961e914a04e07.stex" ]
+source_file="res://asset/visual/background/sk_1_all.png"
+dest_files=[ "res://.import/sk_1_all.png-358963ca9ad6778cfc54d8bd69810094.stex" ]
 
 [params]
 
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0
