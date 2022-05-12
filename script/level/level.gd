@@ -1,4 +1,4 @@
-class_name level
+class_name Level
 extends Node2D
 
 export(Array, Resource) var dialogue_paths

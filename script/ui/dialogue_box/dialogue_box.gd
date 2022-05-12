@@ -3,7 +3,7 @@ extends Control
 
 signal expired()
 
-const TIME_PER_CHAR := 0.05
+const TIME_PER_CHAR := 0.025
 const MAX_TAIL_RANGE := 256.0
 const MAX_SLEEP_TIME := 3.0
 const stye_box_template = preload("res://scene/ui/dialogue_box/test_stylebox.tres")

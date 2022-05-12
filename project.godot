@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script/asset_import/asset_import.gd"
 }, {
+"base": "Sprite",
+"class": "BackgroundLayer",
+"language": "GDScript",
+"path": "res://script/graphics/background_layer.gd"
+}, {
 "base": "Node2D",
 "class": "Character",
 "language": "GDScript",
@@ -58,6 +63,16 @@ _global_script_classes=[ {
 "class": "DialoguePath",
 "language": "GDScript",
 "path": "res://script/ui/dialogue_box/dialogue_path.gd"
+}, {
+"base": "Node2D",
+"class": "Level",
+"language": "GDScript",
+"path": "res://script/level/level.gd"
+}, {
+"base": "Level",
+"class": "Level1",
+"language": "GDScript",
+"path": "res://script/level/level1.gd"
 }, {
 "base": "PlayerState",
 "class": "MovePlayerState",
@@ -113,16 +128,12 @@ _global_script_classes=[ {
 "class": "Wheels",
 "language": "GDScript",
 "path": "res://script/character/player/wheels.gd"
-}, {
-"base": "Node2D",
-"class": "level",
-"language": "GDScript",
-"path": "res://script/level/level.gd"
 } ]
 _global_script_class_icons={
 "AirbornePlayerState": "",
 "AnimationArea": "",
 "AssetImport": "",
+"BackgroundLayer": "",
 "Character": "",
 "CollapsableBridge": "",
 "Collectable": "",
@@ -130,6 +141,8 @@ _global_script_class_icons={
 "DeathArea": "",
 "DialogueBox": "",
 "DialoguePath": "",
+"Level": "",
+"Level1": "",
 "MovePlayerState": "",
 "ObstacleSpawner": "",
 "PixelWidthEdit": "",
@@ -140,8 +153,7 @@ _global_script_class_icons={
 "State": "",
 "StateMachine": "",
 "TitleScreen": "",
-"Wheels": "",
-"level": ""
+"Wheels": ""
 }
 
 [application]

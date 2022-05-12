@@ -17,6 +17,7 @@ export(float, 0, 1) var coyote_time = 0.2
 export(float, 0, 1) var zelda_roll = 0.15
 export(float, 0, 1) var jump_steer = 0.2
 export var speed_boost_unlocked := true
+export var smoking := true setget set_smoking
 
 var respawn := false
 
@@ -33,6 +34,10 @@ func _ready() -> void:
 	facing = 1
 	charge_gauge.value = charge_gauge.max_value
 
+
+func set_smoking(val : bool) -> void:
+	smoking = val
+	$Wheels/CPUParticles2D.emitting = val
 
 
 func change_respawn(path : NodePath) -> void:
