@@ -823,13 +823,11 @@ anims/SpeedBoost = SubResource( 16 )
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 anchor_mode = 0
+current = true
 
 [node name="Player" parent="." instance=ExtResource( 12 )]
 position = Vector2( 832, 840 )
 respawn_point_path = NodePath("../Spawn")
-
-[node name="Camera2D" type="Camera2D" parent="Player/Wheels" index="3"]
-current = true
 
 [node name="Companion" parent="." instance=ExtResource( 8 )]
 position = Vector2( 2148, 31 )

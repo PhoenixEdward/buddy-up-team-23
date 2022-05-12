@@ -6,6 +6,7 @@ var coyote_buffer := 0.0
 var coyote := false
 
 func update(delta: float) -> void:
+	.update(delta)
 	if _player.speed_boost_unlocked:
 		if _player.charge_gauge.value > _player.boost_depletion_rate:
 			if Input.is_action_just_pressed("boost"):
@@ -24,9 +25,6 @@ func update(delta: float) -> void:
 				_replenish_charge_gauge()
 		else:
 			_replenish_charge_gauge()
-	if _player.charge_gauge.visible:
-		_player.charge_gauge.rect_position = current_gauge_offset + _player.body.get_global_transform_with_canvas().origin
-			
 
 	if Input.is_action_just_pressed("jump"):
 		_player.apply_jump_impulse()
@@ -52,7 +50,6 @@ func physics_update(delta:float) -> void:
 	var snap : Vector2 = _player.wheels.get_floor_normal()
 	var movement_vec := Vector2(0, _player.wheels.velocity.y)
 	
-	
 	if Input.is_action_pressed("move_right"):
 		movement_vec.x = 1
 	elif Input.is_action_pressed("move_left"):
@@ -60,12 +57,13 @@ func physics_update(delta:float) -> void:
 
 	_player.wheels.sprite.rotation = _player.wheels.get_floor_normal().rotated(PI/2.0).angle()
 	
-	if _player.wheels.get_floor_normal().dot(_player.wheels.velocity) > 0:
-		_player.wheels.velocity.y = lerp(_player.wheels.velocity.y, _player.gravity, _player.acceleration)
-	
+#	if _player.wheels.get_floor_normal().dot(_player.wheels.velocity) > 0:
+#		_player.wheels.velocity.y = lerp(_player.wheels.velocity.y, _player.gravity, _player.acceleration)
+	print(snap)
 	var velocity := movement_vec
 	velocity.x *= _player.speed
 	velocity.x += _player.boost * _player.facing if boosting else 0
+	velocity.y += 1
 	
 	if abs(_player.wheels.velocity.x) > 1:
 		var rate_of_change : float = _player.friction
