@@ -13,10 +13,10 @@
 [ext_resource path="res://script/character/player/player_body.gd" type="Script" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 40.05
+radius = 43.1856
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 22.2036
+radius = 32.3883
 
 [node name="Player" type="Node2D" groups=["player"]]
 script = ExtResource( 1 )
@@ -52,6 +52,7 @@ script = ExtResource( 11 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+position = Vector2( -1, 7 )
 shape = SubResource( 1 )
 
 [node name="Wheels" type="KinematicBody2D" parent="."]
