@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Spark_5.wav-5df085f3180c4039a62ed335e6c1592e.sample"
+
+[deps]
+
+source_file="res://asset/audio/sfx/player/Spark_5.wav"
+dest_files=[ "res://.import/Spark_5.wav-5df085f3180c4039a62ed335e6c1592e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=false
+compress/mode=0

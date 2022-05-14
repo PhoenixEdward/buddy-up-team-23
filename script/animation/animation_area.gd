@@ -7,6 +7,7 @@ export(NodePath) var animation_player_path
 export(bool) var make_thin := false
 export(bool) var no_replay := false
 export(int) var direction := 1
+export(bool) var queue := false
 
 var _animation_player : AnimationPlayer
 var _direction := Vector2.ZERO
@@ -36,7 +37,10 @@ func _try_play_animation(body : PlayerBody) -> void:
 	if animation_name != "":
 		if not _direction.dot(body.linear_velocity) > 0:
 			if body.linear_velocity.dot(Vector2.RIGHT * direction) > 0:
-				_animation_player.play(animation_name)
+				if not queue:
+					_animation_player.play(animation_name)
+				else:
+					_animation_player.queue(animation_name)
 				_played = true
 				_direction = Vector2.RIGHT * direction
 			else:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://scene/level/parallax_background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://script/animation/animation_area.gd" type="Script" id=2]
@@ -142,6 +142,24 @@ tracks/0/keys = {
 "values": [ {
 "args": [ 1 ],
 "method": "play_dialogue"
+} ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "NextLevel"
+length = 3.0
+tracks/0/type = "method"
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "load_next_level"
 } ]
 }
 
@@ -709,6 +727,7 @@ extents = Vector2( 20000, 106.5 )
 [node name="Level" type="Node2D"]
 script = ExtResource( 4 )
 dialogue_paths = [ ExtResource( 7 ), ExtResource( 9 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 20 ) ]
+next_level = 2
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 1 )]
 
@@ -734,6 +753,7 @@ root_node = NodePath("../Camera2D")
 anims/Intro = SubResource( 19 )
 anims/Jump = SubResource( 17 )
 anims/Key1 = SubResource( 2 )
+anims/NextLevel = SubResource( 20 )
 anims/Pan1 = SubResource( 1 )
 anims/Pan2 = SubResource( 8 )
 anims/Pan3 = SubResource( 9 )
@@ -757,7 +777,7 @@ max_jump_strength = 2000.0
 speed_boost_unlocked = false
 
 [node name="Companion" parent="." instance=ExtResource( 8 )]
-position = Vector2( 610, 661 )
+position = Vector2( 1032, 432 )
 
 [node name="AnimationArea" type="Area2D" parent="."]
 position = Vector2( 1792, 752 )
@@ -861,6 +881,17 @@ animation_player_path = NodePath("../AnimationPlayer")
 position = Vector2( 0, 25.5 )
 shape = SubResource( 4 )
 
+[node name="AnimationArea11" type="Area2D" parent="."]
+position = Vector2( 26384, -1248 )
+script = ExtResource( 2 )
+animation_name = "NextLevel"
+animation_player_path = NodePath("../AnimationPlayer")
+queue = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimationArea11"]
+position = Vector2( 0, 25.5 )
+shape = SubResource( 4 )
+
 [node name="FinalDeathCollider" type="Area2D" parent="."]
 position = Vector2( 10496, 1128 )
 collision_layer = 0
@@ -872,7 +903,7 @@ position = Vector2( 6208, 56 )
 shape = SubResource( 14 )
 
 [node name="Collectable" parent="." instance=ExtResource( 11 )]
-position = Vector2( 26376, -992 )
+position = Vector2( 26208, -992 )
 animation_name = "Key1"
 animation_player_path = NodePath("../AnimationPlayer")
 
