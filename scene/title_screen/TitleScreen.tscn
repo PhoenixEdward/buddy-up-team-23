@@ -69,7 +69,7 @@ margin_top = 280.0
 margin_right = 1423.0
 margin_bottom = 400.0
 custom_fonts/font = ExtResource( 3 )
-text = "Settings"
+text = "Enable Mobile"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 pause_mode = 2

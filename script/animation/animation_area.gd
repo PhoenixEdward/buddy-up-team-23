@@ -5,10 +5,11 @@ export(String) var animation_name
 export(NodePath) var animation_player_path
 ## causes the collision shape to be reduced to zero on the x-axis. Necessary for camera panning.
 export(bool) var make_thin := false
+export(bool) var no_replay := false
 
 var _animation_player : AnimationPlayer
 var _direction := Vector2.ZERO
-
+var _played := false
 
 func _ready() -> void:
 	connect("body_entered", self, "_on_body_entered")
@@ -19,13 +20,15 @@ func _ready() -> void:
 
 
 func _on_body_entered(body : Node) -> void:
-	if body is PlayerBody:
-		_try_play_animation(body as PlayerBody)
+	if not _played or not no_replay:
+		if body is PlayerBody:
+			_try_play_animation(body as PlayerBody)
 
 
 func _on_body_exited(body : Node) -> void:
-	if body is PlayerBody:
-		_try_play_animation(body as PlayerBody)
+	if not _played or not no_replay:
+		if body is PlayerBody:
+			_try_play_animation(body as PlayerBody)
 
 
 func _try_play_animation(body : PlayerBody) -> void:
@@ -33,6 +36,7 @@ func _try_play_animation(body : PlayerBody) -> void:
 		if not _direction.dot(body.linear_velocity) > 0:
 			if body.linear_velocity.dot(Vector2.RIGHT) > 0:
 				_animation_player.play(animation_name)
+				_played = true
 				_direction = Vector2.RIGHT
 			else:
 				_animation_player.play(animation_name, -1, -1, true)

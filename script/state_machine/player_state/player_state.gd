@@ -20,7 +20,7 @@ func physics_update(_delta:float) -> void:
 		_player.player_body.reset = true
 		_player.respawn = false
 		EventManager.emit_signal("player_died")
-
+	_player.wheels.sprite.rotate(((_player.wheels.velocity.x * _delta) / (_player.wheels.sprite.texture.get_size().x * PI)) * TAU)
 
 func update(delta: float) -> void:
 	if _player.facing > 0:
