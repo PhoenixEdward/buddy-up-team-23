@@ -69,6 +69,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script/level/level.gd"
 }, {
+
 "base": "Level",
 "class": "Level1",
 "language": "GDScript",
@@ -142,6 +143,7 @@ _global_script_class_icons={
 "DialogueBox": "",
 "DialoguePath": "",
 "Level": "",
+
 "Level1": "",
 "MovePlayerState": "",
 "ObstacleSpawner": "",
