@@ -1,12 +1,14 @@
 class_name Companion
 extends Character
 
+const TIME_ALLOWED_OFFSCREEN := 3.0
+
 export var avoidance_resolution : int 
 
 # dictates the size of interest and danger
 export var steer_force := 0.1
 export var look_ahead := 24
-
+export var audio_drone := true
 
 var _player : Player
 # context arrays
@@ -23,6 +25,7 @@ var _reset := false
 
 onready var danger_ray : RayCast2D = $Body/DangerRay
 onready var target_ray : RayCast2D = $Body/TargetRay
+onready var timer : Timer = $Timer
 
 func _ready() -> void:
 	DialogueManager.npc_dialogue_box = $DialogueLayer/DialogueBox
@@ -49,6 +52,13 @@ func _on_player_died() -> void:
 	_reset = true
 
 
+func _process(delta: float) -> void:
+	if not audio_drone and $AudioStreamPlayer2D.playing and body.linear_velocity != Vector2.ZERO:
+		$AudioStreamPlayer2D.stop()
+	elif not $AudioStreamPlayer2D.playing:
+		$AudioStreamPlayer2D.play()
+
+
 func _physics_process(delta: float) -> void:
 	if _reset:
 		body.global_position = _player.body.global_position + _companion_offset
@@ -56,9 +66,9 @@ func _physics_process(delta: float) -> void:
 		_reset = false
 		
 	if _player.body.global_position.distance_to(body.global_position) > 512.0:
-		body.linear_velocity = lerp(body.linear_velocity.normalized(), handle_pursuit(_player.body.global_position + Vector2(0, 64), _player.body), 0.05) * speed * 2.0
+		body.linear_velocity = lerp(body.linear_velocity, handle_pursuit(_player.body.global_position + Vector2(0, 64), _player.body) * speed * 2.0, 0.05)
 	elif _player.body.global_position.distance_to(body.global_position) > 256.0:
-		body.linear_velocity = lerp(body.linear_velocity.normalized(), handle_pursuit(_player.body.global_position + Vector2(0, 64), _player.body), 0.05) * speed
+		body.linear_velocity = lerp(body.linear_velocity, handle_pursuit(_player.body.global_position + Vector2(0, 64), _player.body) * speed, 0.05)
 	else:
 		if body.linear_velocity.length() > 1:
 			body.linear_velocity = lerp(body.linear_velocity, Vector2.ZERO , 0.05)
@@ -112,3 +122,16 @@ func handle_pursuit(destination : Vector2, target : PhysicsBody2D = null) -> Vec
 		ray.clear_exceptions()
 	
 	return _choose_direction()
+
+
+func _on_VisibilityNotifier2D_screen_exited() -> void:
+	if timer.is_stopped():
+		timer.start(TIME_ALLOWED_OFFSCREEN)
+
+
+func _on_VisibilityNotifier2D_screen_entered() -> void:
+	if not timer.is_stopped():
+		timer.stop()
+
+func _on_Timer_timeout() -> void:
+	_reset = true

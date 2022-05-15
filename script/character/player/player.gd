@@ -3,6 +3,14 @@ extends Character
 
 signal died()
 
+const spark1 : AudioStream = preload("res://asset/audio/sfx/player/Spark_1.wav")
+const spark2 : AudioStream = preload("res://asset/audio/sfx/player/Spark_2.wav")
+const spark3 : AudioStream = preload("res://asset/audio/sfx/player/Spark_3.wav")
+const spark4 : AudioStream = preload("res://asset/audio/sfx/player/Spark_4.wav")
+const spark5 : AudioStream = preload("res://asset/audio/sfx/player/Spark_5.wav")
+const spark6 : AudioStream = preload("res://asset/audio/sfx/player/Spark_6.wav")
+const spark7 : AudioStream = preload("res://asset/audio/sfx/player/Spark_7.wav")
+
 export var respawn_point_path : NodePath
 export(float, 1000, 2000) var boost : float = 1200
 export var charge_gauge_offset : Vector2
@@ -20,12 +28,18 @@ export var speed_boost_unlocked := true
 export var smoking := true setget set_smoking
 
 var respawn := false
-
+var _rng := RandomNumberGenerator.new()
 
 onready var wheels : Wheels = $Wheels
 onready var player_body : RigidBody2D = $Body
 onready var charge_gauge : TextureProgress = $UIlayer/ChargeGauge
 onready var respawn_point : Position2D = get_node(respawn_point_path) as Position2D
+onready var move_sound : AudioStreamPlayer = $Wheels/MoveSoundPlayer
+onready var boost_sound : AudioStreamPlayer = $Wheels/BoostSoundPlayer
+onready var jump_sound : AudioStreamPlayer = $Wheels/JumpSoundPlayer
+onready var stop_sound : AudioStreamPlayer = $Wheels/StopSoundPlayer
+onready var spark_player : AudioStreamPlayer = $SparkPlayer
+onready var sparks := [spark1, spark2, spark3, spark4, spark5, spark6, spark7]
 
 func _ready() -> void:
 	DialogueManager.player_dialogue_box = $UIlayer/DialogueBox
@@ -34,10 +48,10 @@ func _ready() -> void:
 	facing = 1
 	charge_gauge.value = charge_gauge.max_value
 
-
 func set_smoking(val : bool) -> void:
 	smoking = val
 	$Wheels/CPUParticles2D.emitting = val
+	spark_player.play()
 
 
 func change_respawn(path : NodePath) -> void:
@@ -53,3 +67,10 @@ func apply_jump_impulse() -> void:
 
 func die() -> void:
 	respawn = true
+
+
+func _on_SparkPlayer_finished() -> void:
+	yield(get_tree().create_timer(0.5), "timeout")
+	if $Wheels/CPUParticles2D.emitting:
+		spark_player.stream = sparks[_rng.randi_range(0, sparks.size() - 1)]
+		spark_player.play()

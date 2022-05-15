@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://asset/visual/tile/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scene/character/player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://script/level/level.gd" type="Script" id=4]
-[ext_resource path="res://asset/visual/background/background.png" type="Texture" id=6]
 [ext_resource path="res://scene/character/companion/Companion.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Animation" id=1]
@@ -78,20 +77,6 @@ tracks/1/keys = {
 [node name="Level" type="Node2D"]
 position = Vector2( -214, 715 )
 script = ExtResource( 4 )
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 2, 1 )
-
-[node name="Sprite" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
-margin_left = -6202.0
-margin_top = -1052.0
-margin_right = 8042.0
-margin_bottom = 1877.0
-texture = ExtResource( 6 )
-expand = true
-stretch_mode = 2
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )

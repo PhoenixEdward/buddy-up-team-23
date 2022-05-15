@@ -8,7 +8,3 @@ func _ready() -> void:
 		$AnimationPlayer.play("Intro")
 	else:
 		pass
-	if GameState.mobile_ui_enabled:
-		$UILayer/MobileUI.show()
-	else:
-		$UILayer/MobileUI.hide()

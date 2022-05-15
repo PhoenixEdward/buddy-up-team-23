@@ -1,0 +1,209 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://script/graphics/background_layer.gd" type="Script" id=1]
+[ext_resource path="res://asset/visual/background/sk_0_2.png" type="Texture" id=2]
+[ext_resource path="res://asset/visual/background/middle_landscape_0_1.png" type="Texture" id=3]
+[ext_resource path="res://asset/visual/background/back_landscape_1_2.png" type="Texture" id=4]
+[ext_resource path="res://asset/visual/background/front_landscape_2.png" type="Texture" id=5]
+[ext_resource path="res://asset/visual/background/back_landscape_1_1.png" type="Texture" id=6]
+[ext_resource path="res://asset/visual/background/front_landscape_0.png" type="Texture" id=7]
+[ext_resource path="res://asset/visual/background/front_landscape_1.png" type="Texture" id=8]
+[ext_resource path="res://asset/visual/background/middle_landscape_1_2.png" type="Texture" id=9]
+[ext_resource path="res://asset/visual/background/middle_landscape_0_0.png" type="Texture" id=10]
+[ext_resource path="res://asset/visual/background/middle_landscape_1_0.png" type="Texture" id=11]
+[ext_resource path="res://asset/visual/background/middle_landscape_1_1.png" type="Texture" id=12]
+[ext_resource path="res://asset/visual/background/sk_1_all.png" type="Texture" id=13]
+[ext_resource path="res://asset/visual/background/middle_landscape_0_2.png" type="Texture" id=14]
+[ext_resource path="res://asset/visual/background/back_landscape_0_2.png" type="Texture" id=15]
+[ext_resource path="res://asset/visual/background/back_landscape_0_1.png" type="Texture" id=16]
+[ext_resource path="res://asset/visual/background/back_landscape_0_0.png" type="Texture" id=17]
+[ext_resource path="res://asset/visual/background/back_landscape_1_0.png" type="Texture" id=18]
+[ext_resource path="res://asset/visual/background/sk_0_0.png" type="Texture" id=19]
+[ext_resource path="res://asset/visual/background/sk_0_1.png" type="Texture" id=20]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+position = Vector2( -2, 28 )
+motion_scale = Vector2( 0.25, 1 )
+
+[node name="BackgroundLayer" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( 41, -1862 )
+texture = ExtResource( 19 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 6
+subtile_counts = Vector2( 2, 6 )
+
+[node name="BackgroundLayer2" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( 1798, -1862 )
+texture = ExtResource( 20 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 6
+subtile_counts = Vector2( 2, 6 )
+
+[node name="BackgroundLayer3" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( 3555, -1862 )
+texture = ExtResource( 2 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 6
+subtile_counts = Vector2( 2, 6 )
+
+[node name="BackgroundLayer4" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( 41, -398 )
+texture = ExtResource( 13 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 6
+subtile_counts = Vector2( 2, 6 )
+
+[node name="BackgroundLayer5" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( 1798, -398 )
+texture = ExtResource( 13 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 6
+subtile_counts = Vector2( 2, 6 )
+
+[node name="BackgroundLayer6" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( 3555, -398 )
+texture = ExtResource( 13 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 6
+subtile_counts = Vector2( 2, 6 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+position = Vector2( -2, 28 )
+motion_scale = Vector2( 0.5, 1 )
+
+[node name="BackgroundLayer" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( 39, -1857 )
+texture = ExtResource( 17 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 7
+subtile_counts = Vector2( 2, 3 )
+
+[node name="BackgroundLayer2" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( 1796, -1857 )
+texture = ExtResource( 16 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 7
+subtile_counts = Vector2( 2, 3 )
+
+[node name="BackgroundLayer3" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( 3553, -1857 )
+texture = ExtResource( 15 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 7
+subtile_counts = Vector2( 2, 3 )
+
+[node name="BackgroundLayer4" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( 39, -393 )
+texture = ExtResource( 18 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 7
+subtile_counts = Vector2( 2, 3 )
+
+[node name="BackgroundLayer5" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( 1796, -393 )
+texture = ExtResource( 6 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 7
+subtile_counts = Vector2( 2, 3 )
+
+[node name="BackgroundLayer6" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( 3553, -393 )
+texture = ExtResource( 4 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 7
+subtile_counts = Vector2( 2, 3 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+position = Vector2( -2, 28 )
+motion_scale = Vector2( 0.75, 1 )
+
+[node name="BackgroundLayer" type="Sprite" parent="ParallaxLayer3"]
+position = Vector2( 15, -1267 )
+texture = ExtResource( 10 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 8
+subtile_counts = Vector2( 2, 3 )
+
+[node name="BackgroundLayer2" type="Sprite" parent="ParallaxLayer3"]
+position = Vector2( 1772, -1267 )
+texture = ExtResource( 3 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 8
+subtile_counts = Vector2( 2, 3 )
+
+[node name="BackgroundLayer3" type="Sprite" parent="ParallaxLayer3"]
+position = Vector2( 3529, -1267 )
+texture = ExtResource( 14 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 8
+subtile_counts = Vector2( 2, 3 )
+
+[node name="BackgroundLayer4" type="Sprite" parent="ParallaxLayer3"]
+position = Vector2( 15, -101 )
+texture = ExtResource( 11 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 8
+subtile_counts = Vector2( 2, 3 )
+
+[node name="BackgroundLayer5" type="Sprite" parent="ParallaxLayer3"]
+position = Vector2( 1772, -101 )
+texture = ExtResource( 12 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 8
+subtile_counts = Vector2( 2, 3 )
+
+[node name="BackgroundLayer6" type="Sprite" parent="ParallaxLayer3"]
+position = Vector2( 3529, -101 )
+texture = ExtResource( 9 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 8
+subtile_counts = Vector2( 2, 3 )
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+position = Vector2( 4, -189 )
+
+[node name="BackgroundLayer" type="Sprite" parent="ParallaxLayer4"]
+position = Vector2( -15, 69 )
+texture = ExtResource( 7 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 10
+subtile_counts = Vector2( 3, 1 )
+
+[node name="BackgroundLayer2" type="Sprite" parent="ParallaxLayer4"]
+position = Vector2( 1742, 69 )
+texture = ExtResource( 8 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 10
+subtile_counts = Vector2( 3, 1 )
+
+[node name="BackgroundLayer3" type="Sprite" parent="ParallaxLayer4"]
+position = Vector2( 3499, 69 )
+texture = ExtResource( 5 )
+centered = false
+script = ExtResource( 1 )
+tile_count = 10
+subtile_counts = Vector2( 3, 1 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
