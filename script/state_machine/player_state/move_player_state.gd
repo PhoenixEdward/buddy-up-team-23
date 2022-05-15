@@ -53,52 +53,53 @@ func update(delta: float) -> void:
 
 
 func physics_update(delta:float) -> void:
-	.physics_update(delta)
-	var snap : Vector2 = _player.wheels.get_floor_normal()
-	var movement_vec := Vector2(0, _player.wheels.velocity.y)
-	
-	if Input.is_action_pressed("move_right"):
-		movement_vec.x = 1
-	elif Input.is_action_pressed("move_left"):
-		movement_vec.x = -1
+	if not _player.is_animating:
+		.physics_update(delta)
+		var snap : Vector2 = _player.wheels.get_floor_normal()
+		var movement_vec := Vector2(0, _player.wheels.velocity.y)
+		
+		if Input.is_action_pressed("move_right"):
+			movement_vec.x = 1
+		elif Input.is_action_pressed("move_left"):
+			movement_vec.x = -1
 
-#	if _player.wheels.get_floor_normal().dot(_player.wheels.velocity) > 0:
-#		_player.wheels.velocity.y = lerp(_player.wheels.velocity.y, _player.gravity, _player.acceleration)
-	var velocity := movement_vec
-	velocity.x *= _player.speed
-	velocity.x += _player.boost * _player.facing if boosting else 0
-	velocity.y += 1
-	
-	if abs(_player.wheels.velocity.x) > 1:
+	#	if _player.wheels.get_floor_normal().dot(_player.wheels.velocity) > 0:
+	#		_player.wheels.velocity.y = lerp(_player.wheels.velocity.y, _player.gravity, _player.acceleration)
+		var velocity := movement_vec
+		velocity.x *= _player.speed
+		velocity.x += _player.boost * _player.facing if boosting else 0
+		velocity.y += 1
+		
+		if abs(_player.wheels.velocity.x) > 1:
 
-		var rate_of_change : float = _player.friction
-		if _player.wheels.velocity.length() < velocity.length():
-			rate_of_change = _player.acceleration
-			
-		velocity.x = lerp(_player.wheels.velocity.x, velocity.x, rate_of_change) 
-	
-	if movement_vec.x != 0 and not _player.boost_sound.playing:
-		if not _player.move_sound.playing:
-			_player.move_sound.play(_rng.randf_range(0, _player.move_sound.stream.get_length()))
-	elif not _player.boost_sound.playing:
-		if _player.move_sound.playing:
-			_player.move_sound.stop()
-			_player.stop_sound.play()
-	elif boosting == false:
-		if _player.boost_sound.playing:
-			_player.boost_sound.stop()
-			_player.stop_sound.play()
-	
-	_player.wheels.velocity = _player.wheels.move_and_slide_with_snap(velocity, snap, Vector2.UP, false, 4, deg2rad(60), false)
-	_player.wheels.particles.direction = _player.wheels.velocity.rotated(PI)
+			var rate_of_change : float = _player.friction
+			if _player.wheels.velocity.length() < velocity.length():
+				rate_of_change = _player.acceleration
+				
+			velocity.x = lerp(_player.wheels.velocity.x, velocity.x, rate_of_change) 
+		
+		if movement_vec.x != 0 and not _player.boost_sound.playing:
+			if not _player.move_sound.playing:
+				_player.move_sound.play(_rng.randf_range(0, _player.move_sound.stream.get_length()))
+		elif not _player.boost_sound.playing:
+			if _player.move_sound.playing:
+				_player.move_sound.stop()
+				_player.stop_sound.play()
+		elif boosting == false:
+			if _player.boost_sound.playing:
+				_player.boost_sound.stop()
+				_player.stop_sound.play()
+		
+		_player.wheels.velocity = _player.wheels.move_and_slide_with_snap(velocity, snap, Vector2.UP, false, 4, deg2rad(60), false)
+		_player.wheels.particles.direction = _player.wheels.velocity.rotated(PI)
 
-	if _player.wheels.velocity.x < 0:
-		_player.player_body.get_node("Sprite").flip_h = true
-	elif _player.wheels.velocity.x > 0:
-		_player.player_body.get_node("Sprite").flip_h = false
-	
-	if _player.wheels.velocity != Vector2.ZERO:
-		_player.facing = -1 if _player.wheels.velocity.dot(Vector2.RIGHT) < 0 else 1
+		if _player.wheels.velocity.x < 0:
+			_player.player_body.get_node("Sprite").flip_h = true
+		elif _player.wheels.velocity.x > 0:
+			_player.player_body.get_node("Sprite").flip_h = false
+		
+		if _player.wheels.velocity != Vector2.ZERO:
+			_player.facing = -1 if _player.wheels.velocity.dot(Vector2.RIGHT) < 0 else 1
 
 
 func exit() -> void:

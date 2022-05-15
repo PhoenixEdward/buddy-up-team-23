@@ -12,9 +12,9 @@
 [ext_resource path="res://script/state_machine/player_state/airborne_player_state.gd" type="Script" id=10]
 [ext_resource path="res://script/character/player/player_body.gd" type="Script" id=11]
 [ext_resource path="res://asset/audio/sfx/player/Move.wav" type="AudioStream" id=12]
-[ext_resource path="res://asset/audio/sfx/player/Stop.wav" type="AudioStream" id=13]
-[ext_resource path="res://asset/audio/sfx/player/Jumping.wav" type="AudioStream" id=14]
-[ext_resource path="res://asset/audio/sfx/player/Boost.wav" type="AudioStream" id=15]
+[ext_resource path="res://asset/audio/sfx/player/Stop.mp3" type="AudioStream" id=13]
+[ext_resource path="res://asset/audio/sfx/player/Jumping.mp3" type="AudioStream" id=14]
+[ext_resource path="res://asset/audio/sfx/player/Boost.mp3" type="AudioStream" id=15]
 [ext_resource path="res://asset/audio/sfx/player/Spark_3.wav" type="AudioStream" id=16]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -89,14 +89,17 @@ bus = "SFX"
 
 [node name="BoostSoundPlayer" type="AudioStreamPlayer" parent="Wheels"]
 stream = ExtResource( 15 )
+volume_db = 24.0
 bus = "SFX"
 
 [node name="JumpSoundPlayer" type="AudioStreamPlayer" parent="Wheels"]
 stream = ExtResource( 14 )
+volume_db = 14.181
 bus = "SFX"
 
 [node name="StopSoundPlayer" type="AudioStreamPlayer" parent="Wheels"]
 stream = ExtResource( 13 )
+volume_db = 24.0
 bus = "SFX"
 
 [node name="StateMachine" type="Node" parent="."]

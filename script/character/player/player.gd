@@ -26,6 +26,8 @@ export(float, 0, 1) var zelda_roll = 0.15
 export(float, 0, 1) var jump_steer = 0.2
 export var speed_boost_unlocked := true
 export var smoking := true setget set_smoking
+export var is_moving_animation := false setget set_is_moving_animation
+export var is_animating := false
 
 var respawn := false
 var _rng := RandomNumberGenerator.new()
@@ -41,6 +43,14 @@ onready var stop_sound : AudioStreamPlayer = $Wheels/StopSoundPlayer
 onready var spark_player : AudioStreamPlayer = $SparkPlayer
 onready var sparks := [spark1, spark2, spark3, spark4, spark5, spark6, spark7]
 
+func set_is_moving_animation(val) -> void:
+	is_moving_animation = val
+	if val:
+		$Wheels/MoveSoundPlayer.play()
+	else:
+		$Wheels/MoveSoundPlayer.stop()
+		$Wheels/StopSoundPlayer.play()
+	
 func _ready() -> void:
 	DialogueManager.player_dialogue_box = $UIlayer/DialogueBox
 	$UIlayer/DialogueBox.speaker = self
@@ -51,12 +61,19 @@ func _ready() -> void:
 func set_smoking(val : bool) -> void:
 	smoking = val
 	$Wheels/CPUParticles2D.emitting = val
-	spark_player.play()
+#	spark_player.play()
+
+func _process(delta: float) -> void:
+	if is_moving_animation:
+		wheels.sprite.rotate(((player_body.linear_velocity.x * delta) / (wheels.sprite.texture.get_size().x * PI)) * TAU)
 
 
 func change_respawn(path : NodePath) -> void:
-	respawn_point = get_node(path)
-
+	if not str(path).begins_with(".."):
+		respawn_point = get_node("../" + path)
+	else:
+		respawn_point = get_node(path)
+	
 
 func unlock_speed_boost() -> void:
 	speed_boost_unlocked = true

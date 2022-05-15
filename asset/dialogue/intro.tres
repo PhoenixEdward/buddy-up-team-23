@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource( 1 )
 is_choice = false
-speakers = [ 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0 ]
-speech = [ "Heeeeello there!", "It looks like you're upside down.", "Would you like help?", "No.", "You look awfully stuck there.", "I'm not stuck!", "Here, let me help.", "Fine. Thanks.", "Nooooooo worries!", "I love helping!", "You're the first robot I've seen in 49.56 years.", "Let's get to know each other!" ]
+speakers = [ 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0 ]
+speech = [ "Heeeeello there!", "It looks like you're upside down.", "Would you like help?", "No.", "You look awfully stuck there.", "I'm not stuck!", "Here, let me help.", "Fine. Thanks.", "Nooooooo worries!", "I love helping!", "You're the first robot I've seen in 49.56 years.", "Let's get to know each other!", "This isn't a good time. I've a task I need to finish.", "Ooh! A memory chip! Key 996: coordinates 0x540x680x650x470x610x6d0x65. Is this yours?", "How did you-", "Ok. Yes. You can help.", "Chip: Hooray! This will be fun!" ]
 next_paths = [  ]

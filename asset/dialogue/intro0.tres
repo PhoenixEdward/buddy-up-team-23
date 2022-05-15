@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://script/ui/dialogue_box/dialogue_path.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+is_choice = false
+speakers = [ 1, 1, 1, 1, 1 ]
+speech = [ "995/1000 keys collected.", "I'm close to leaving this damned place and taking a long nap to recharge. I've grime in all my circuits and a terrible pain in all the diodes down my left side.", "Key 996: coordinates corrupted.", "Don't know why humans didn't use better storage. Probably the same reason they couldn't stop arguing for long enough to save themselves.", "Well, it can't get any worse." ]
+next_paths = [  ]

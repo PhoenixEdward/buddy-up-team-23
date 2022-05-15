@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Stop.mp3-a29ad197f6bae558f2fb74fc1315f109.mp3str"
+
+[deps]
+
+source_file="res://asset/audio/sfx/player/Stop.mp3"
+dest_files=[ "res://.import/Stop.mp3-a29ad197f6bae558f2fb74fc1315f109.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
