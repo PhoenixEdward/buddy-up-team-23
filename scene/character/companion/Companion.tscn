@@ -20,6 +20,7 @@ avoidance_resolution = 128
 look_ahead = 128
 
 [node name="DialogueLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="DialogueBox" parent="DialogueLayer" instance=ExtResource( 3 )]
 visible = false

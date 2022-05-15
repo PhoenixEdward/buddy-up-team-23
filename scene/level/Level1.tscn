@@ -867,6 +867,7 @@ extents = Vector2( 20000, 106.5 )
 script = ExtResource( 4 )
 dialogue_paths = [ ExtResource( 7 ), ExtResource( 9 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 20 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ) ]
 next_level = 2
+play_intro = true
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 1 )]
 

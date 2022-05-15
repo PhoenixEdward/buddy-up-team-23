@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://asset/dialogue/level3/intro.tres" type="Resource" id=1]
 [ext_resource path="res://asset/visual/tile/tileset.tres" type="TileSet" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://script/level/level1.gd" type="Script" id=10]
 [ext_resource path="res://script/animation/death_area.gd" type="Script" id=11]
 [ext_resource path="res://scene/collectable/Collectable.tscn" type="PackedScene" id=12]
+[ext_resource path="res://asset/visual/light_shadow_light.png" type="Texture" id=13]
+[ext_resource path="res://asset/dialogue/level3/outro.tres" type="Resource" id=14]
 
 [sub_resource type="Animation" id=9]
 resource_name = "Intro"
@@ -65,6 +67,87 @@ tracks/3/keys = {
 "args": [ 0 ],
 "method": "play_dialogue"
 } ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Outro"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player:is_animating")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 13.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Companion:is_animating")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 13.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 14.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ 1 ],
+"method": "play_dialogue"
+}, {
+"args": [  ],
+"method": "load_next_level"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("UILayer/White:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 4.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Player/Light2D:energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 6.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 5.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Player:is_moving_animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=1]
@@ -298,6 +381,42 @@ tracks/4/keys = {
 "update": 0,
 "values": [ false ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("UILayer/White:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Player/Light2D:energy")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Player:is_moving_animation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 128, 384 )
@@ -307,13 +426,20 @@ extents = Vector2( 973, 81 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 10 )
-dialogue_paths = [ ExtResource( 1 ) ]
+dialogue_paths = [ ExtResource( 1 ), ExtResource( 14 ) ]
+next_level = 3
 play_intro = true
 
 [node name="UILayer" parent="." instance=ExtResource( 9 )]
 
+[node name="White" type="ColorRect" parent="UILayer"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
 [node name="Node2D4" type="Node2D" parent="."]
 position = Vector2( -704, 1416 )
+z_index = -1
 
 [node name="Sprite" type="Sprite" parent="Node2D4"]
 position = Vector2( 1984, -752 )
@@ -336,6 +462,7 @@ texture = ExtResource( 8 )
 centered = false
 
 [node name="Node2D" type="Node2D" parent="."]
+z_index = -1
 
 [node name="Sprite" type="Sprite" parent="Node2D"]
 position = Vector2( 1984, -752 )
@@ -359,6 +486,7 @@ centered = false
 
 [node name="Node2D2" type="Node2D" parent="."]
 position = Vector2( -16, -1000 )
+z_index = -1
 
 [node name="Sprite" type="Sprite" parent="Node2D2"]
 position = Vector2( 1984, -752 )
@@ -382,6 +510,7 @@ centered = false
 
 [node name="Node2D3" type="Node2D" parent="."]
 position = Vector2( -48, -1920 )
+z_index = -1
 
 [node name="Sprite" type="Sprite" parent="Node2D3"]
 position = Vector2( 1984, -752 )
@@ -405,6 +534,7 @@ centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Intro = SubResource( 9 )
+anims/Outro = SubResource( 10 )
 anims/Pan1 = SubResource( 1 )
 anims/Pan2 = SubResource( 4 )
 anims/Pan3 = SubResource( 5 )
@@ -422,6 +552,12 @@ tile_data = PoolIntArray( -3342291, 0, 0, -3342290, 0, 0, -3342289, 0, 0, -33422
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 2536, 560 )
 respawn_point_path = NodePath("../RespawnPoint")
+
+[node name="Light2D" type="Light2D" parent="Player"]
+position = Vector2( 5512, -2056 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 13 )
+energy = 0.0
 
 [node name="Companion" parent="." instance=ExtResource( 4 )]
 position = Vector2( 2392, 424 )
@@ -487,6 +623,9 @@ shape = SubResource( 3 )
 
 [node name="Collectable" parent="." instance=ExtResource( 12 )]
 position = Vector2( 8344, -1424 )
+animation_name = "Outro"
+animation_player_path = NodePath("../AnimationPlayer")
+no_replay = true
 
 [node name="DeathArea" type="Area2D" parent="."]
 position = Vector2( 6328, 1064 )

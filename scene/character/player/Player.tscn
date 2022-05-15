@@ -28,6 +28,7 @@ script = ExtResource( 1 )
 charge_gauge_offset = Vector2( 96, -128 )
 
 [node name="UIlayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="DialogueBox" parent="UIlayer" instance=ExtResource( 5 )]
 font_color = Color( 1, 0.713726, 0.541176, 1 )

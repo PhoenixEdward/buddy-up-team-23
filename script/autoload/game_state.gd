@@ -8,8 +8,9 @@ enum State {
 const LEVEL1 = preload("res://scene/level/Level1.tscn")
 const LEVEL2 = preload("res://scene/level/level2.tscn")
 const LEVEL3 = preload("res://scene/level/level3.tscn")
+const RESTART = preload("res://scene/title_screen/SplashScreen.tscn")
 
 var state : int
 var mobile_ui_enabled := false
 
-onready var levels := [LEVEL1, LEVEL2, LEVEL3]
+onready var levels := [LEVEL1, LEVEL2, LEVEL3, RESTART]
