@@ -10,6 +10,7 @@ export var steer_force := 0.1
 export var look_ahead := 24
 export var audio_drone := true
 export var is_animating := false
+export var facing_left := false
 
 var _player : Player
 # context arrays
@@ -27,6 +28,7 @@ var _particles_offset := Vector2.ZERO
 var arm_offset := Vector2.ZERO
 var leg_offset := Vector2.ZERO
 
+onready var player_ray : RayCast2D = $Body/RayCast2D
 onready var danger_ray : RayCast2D = $Body/DangerRay
 onready var target_ray : RayCast2D = $Body/TargetRay
 onready var timer : Timer = $Timer
@@ -52,6 +54,7 @@ func _ready() -> void:
 		body.add_child(_danger_rays[i])
 	arm_offset = $Body/Sprite/Arm.position
 	leg_offset = $Body/Sprite/Leg.position
+	_change_direction(facing_left)
 
 func _on_player_died() -> void:
 	_reset = true
@@ -63,6 +66,13 @@ func _process(delta: float) -> void:
 	elif not $Body/AudioStreamPlayer2D.playing:
 		$AudioStreamPlayer2D.play()
 	if body.linear_velocity.x > 0:
+		_change_direction(false)
+	elif body.linear_velocity.x < 0:
+		_change_direction()
+
+
+func _change_direction(face_left := true) -> void:
+	if not face_left:
 		body.get_node("Sprite").flip_h = true
 		$Body/CPUParticles2D.position = _particles_offset * Vector2(-1, 1)
 		$Body/Sprite/Leg.position = leg_offset * Vector2(-1, 1)
@@ -70,15 +80,16 @@ func _process(delta: float) -> void:
 		$Body/Sprite/Arm.position = arm_offset * Vector2(-1, 1)
 		$Body/Sprite/Arm.flip_h = true
 		$Body/Sprite/Arm.rotation = 45
-	elif body.linear_velocity.x < 0:
+		$Body/CPUParticles2D.direction = Vector2.LEFT
+	else:
 		body.get_node("Sprite").flip_h = false
 		$Body/CPUParticles2D.position = _particles_offset
+		$Body/CPUParticles2D.direction = Vector2.RIGHT
 		$Body/Sprite/Leg.position = leg_offset
 		$Body/Sprite/Leg.flip_h = false
 		$Body/Sprite/Arm.position = arm_offset
 		$Body/Sprite/Arm.flip_h = false
 		$Body/Sprite/Arm.rotation = -45
-
 
 func _physics_process(delta: float) -> void:
 	if not is_animating:
@@ -86,7 +97,15 @@ func _physics_process(delta: float) -> void:
 			body.global_position = _player.body.global_position + _companion_offset
 			body.linear_velocity = Vector2.ZERO
 			_reset = false
-			
+		
+		player_ray.cast_to = _player.player_body.global_position - body.global_position
+		
+		if player_ray.is_colliding() and player_ray.get_collider() != _player.player_body:
+			_on_VisibilityNotifier2D_screen_exited()
+		else:
+			_on_VisibilityNotifier2D_screen_entered()
+		
+	
 		if _player.body.global_position.distance_to(body.global_position) > 512.0:
 			body.linear_velocity = lerp(body.linear_velocity, handle_pursuit(_player.body.global_position + Vector2(0, 64), _player.body) * speed * 2.0, 0.05)
 		elif _player.body.global_position.distance_to(body.global_position) > 256.0:

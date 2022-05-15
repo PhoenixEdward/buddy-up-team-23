@@ -6,5 +6,5 @@
 script = ExtResource( 1 )
 is_choice = false
 speakers = [ 0, 1 ]
-speech = [ "Don't forget to hit SPACE to jump, Junket.", "I know. I know." ]
+speech = [ "So how long have you been collecting keys?", "1500 years." ]
 next_paths = [  ]

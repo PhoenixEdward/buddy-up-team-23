@@ -158,7 +158,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Vanadium Labs Game"
+config/name="Junket And Chip"
 config/description="Buddy Up Game Jam Spring 2022"
 run/main_scene="res://scene/title_screen/SplashScreen.tscn"
 config/icon="res://meta/logo.png"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://scene/level/parallax_background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://script/animation/animation_area.gd" type="Script" id=2]
@@ -6,23 +6,27 @@
 [ext_resource path="res://script/level/level1.gd" type="Script" id=4]
 [ext_resource path="res://scene/obstacle/CollapsableBridge.tscn" type="PackedScene" id=5]
 [ext_resource path="res://script/level/obstacle/obstacle_spawner.gd" type="Script" id=6]
-[ext_resource path="res://asset/dialogue/test_dialogue.tres" type="Resource" id=7]
+[ext_resource path="res://asset/dialogue/level1/test_dialogue.tres" type="Resource" id=7]
 [ext_resource path="res://scene/character/companion/Companion.tscn" type="PackedScene" id=8]
-[ext_resource path="res://asset/dialogue/first_key.tres" type="Resource" id=9]
+[ext_resource path="res://asset/dialogue/level1/first_key.tres" type="Resource" id=9]
 [ext_resource path="res://asset/visual/tile/tileset.tres" type="TileSet" id=10]
 [ext_resource path="res://scene/collectable/Collectable.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scene/character/player/Player.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scene/obstacle/CollapsableBridgeReversed.tscn" type="PackedScene" id=13]
-[ext_resource path="res://asset/dialogue/speed_boost.tres" type="Resource" id=14]
-[ext_resource path="res://asset/dialogue/jump.tres" type="Resource" id=15]
-[ext_resource path="res://asset/dialogue/space_to_jump.tres" type="Resource" id=16]
+[ext_resource path="res://asset/dialogue/level1/speed_boost.tres" type="Resource" id=14]
+[ext_resource path="res://asset/dialogue/level1/jump.tres" type="Resource" id=15]
+[ext_resource path="res://asset/dialogue/level1/space_to_jump.tres" type="Resource" id=16]
 [ext_resource path="res://scene/level/ui_layer.tscn" type="PackedScene" id=17]
-[ext_resource path="res://asset/dialogue/intro0.tres" type="Resource" id=18]
-[ext_resource path="res://asset/dialogue/intro.tres" type="Resource" id=20]
+[ext_resource path="res://asset/dialogue/level1/intro0.tres" type="Resource" id=18]
+[ext_resource path="res://asset/dialogue/level1/screen4.tres" type="Resource" id=19]
+[ext_resource path="res://asset/dialogue/level1/intro.tres" type="Resource" id=20]
+[ext_resource path="res://asset/dialogue/level1/screen5.tres" type="Resource" id=21]
+[ext_resource path="res://asset/dialogue/level1/screen6.tres" type="Resource" id=22]
+[ext_resource path="res://asset/dialogue/level1/screen7.tres" type="Resource" id=23]
 
 [sub_resource type="Animation" id=19]
 resource_name = "Intro"
-length = 110.0
+length = 120.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Player/Wheels:position")
 tracks/0/interp = 1
@@ -54,10 +58,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 32.6, 37.1, 40.7, 45.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 3, 32.6, 37.1, 40.7, 45.7 ),
+"transitions": PoolRealArray( 1, 2, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.207843, 0.207843, 0.207843, 1 ), Color( 0.207843, 0.207843, 0.207843, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.207843, 0.207843, 0.207843, 1 ), Color( 0.207843, 0.207843, 0.207843, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("../CanvasModulate:color")
@@ -66,10 +70,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 32.6, 37.1, 40.7, 45.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 3, 32.6, 37.1, 40.7, 45.7 ),
+"transitions": PoolRealArray( 1, 2, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.333333, 0.333333, 0.333333, 1 ), Color( 0.333333, 0.333333, 0.333333, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.333333, 0.333333, 0.333333, 1 ), Color( 0.333333, 0.333333, 0.333333, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("../Companion/Body:position")
@@ -90,7 +94,7 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 48.7 ),
+"times": PoolRealArray( 3, 48.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [ 6 ],
@@ -155,7 +159,7 @@ tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"times": PoolRealArray( 0, 109.6 ),
+"times": PoolRealArray( 0, 120 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -167,7 +171,7 @@ tracks/11/loop_wrap = true
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/keys = {
-"times": PoolRealArray( 0, 109.9 ),
+"times": PoolRealArray( 0, 120 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -375,9 +379,12 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"values": [  ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 7 ],
+"method": "play_dialogue"
+} ]
 }
 tracks/3/type = "method"
 tracks/3/path = NodePath("../Player")
@@ -431,9 +438,12 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"values": [  ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 8 ],
+"method": "play_dialogue"
+} ]
 }
 tracks/3/type = "method"
 tracks/3/path = NodePath("../Player")
@@ -487,9 +497,12 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"values": [  ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 9 ],
+"method": "play_dialogue"
+} ]
 }
 tracks/3/type = "method"
 tracks/3/path = NodePath("../Player")
@@ -599,9 +612,12 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"values": [  ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 10 ],
+"method": "play_dialogue"
+} ]
 }
 tracks/3/type = "method"
 tracks/3/path = NodePath("../Player")
@@ -779,6 +795,18 @@ tracks/12/keys = {
 "update": 0,
 "values": [ false ]
 }
+tracks/13/type = "value"
+tracks/13/path = NodePath("..:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=18]
 resource_name = "SpaceToJump"
@@ -837,14 +865,13 @@ extents = Vector2( 20000, 106.5 )
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 4 )
-dialogue_paths = [ ExtResource( 7 ), ExtResource( 9 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 20 ), ExtResource( 18 ) ]
+dialogue_paths = [ ExtResource( 7 ), ExtResource( 9 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 20 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ) ]
 next_level = 2
-play_intro = true
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 1 )]
 
 [node name="ParallaxLayer" parent="ParallaxBackground" index="0"]
-position = Vector2( -4699, -204 )
+position = Vector2( -4784, 53 )
 
 [node name="BackgroundLayer" parent="ParallaxBackground/ParallaxLayer" index="0"]
 tile_count = 8
@@ -865,7 +892,7 @@ tile_count = 8
 tile_count = 8
 
 [node name="ParallaxLayer2" parent="ParallaxBackground" index="1"]
-position = Vector2( -4699, -204 )
+position = Vector2( -4784, 53 )
 
 [node name="BackgroundLayer" parent="ParallaxBackground/ParallaxLayer2" index="0"]
 tile_count = 9
@@ -886,7 +913,7 @@ tile_count = 9
 tile_count = 9
 
 [node name="ParallaxLayer3" parent="ParallaxBackground" index="2"]
-position = Vector2( -4699, -204 )
+position = Vector2( -4784, 53 )
 
 [node name="BackgroundLayer" parent="ParallaxBackground/ParallaxLayer3" index="0"]
 tile_count = 10
@@ -907,7 +934,7 @@ tile_count = 10
 tile_count = 10
 
 [node name="ParallaxLayer4" parent="ParallaxBackground" index="3"]
-position = Vector2( -4693, -421 )
+position = Vector2( -4778, -164 )
 
 [node name="BackgroundLayer" parent="ParallaxBackground/ParallaxLayer4" index="0"]
 tile_count = 12
@@ -967,6 +994,7 @@ speed_boost_unlocked = false
 
 [node name="Companion" parent="." instance=ExtResource( 8 )]
 position = Vector2( 2775, -241 )
+facing_left = true
 
 [node name="AnimationArea" type="Area2D" parent="."]
 position = Vector2( 1792, 752 )
@@ -1093,7 +1121,6 @@ shape = SubResource( 14 )
 
 [node name="Collectable" parent="." instance=ExtResource( 11 )]
 position = Vector2( 26380, -1028 )
-animation_name = "Key1"
 animation_player_path = NodePath("../AnimationPlayer")
 
 [node name="Spawn" type="Position2D" parent="."]

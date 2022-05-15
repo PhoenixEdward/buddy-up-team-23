@@ -61,7 +61,8 @@ position = Vector2( -1, 7 )
 shape = SubResource( 1 )
 
 [node name="Wheels" type="KinematicBody2D" parent="."]
-collision_mask = 0
+collision_layer = 4
+collision_mask = 2
 script = ExtResource( 4 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Wheels"]
