@@ -903,7 +903,7 @@ position = Vector2( 6208, 56 )
 shape = SubResource( 14 )
 
 [node name="Collectable" parent="." instance=ExtResource( 11 )]
-position = Vector2( 26208, -992 )
+position = Vector2( 0, 1 )
 animation_name = "Key1"
 animation_player_path = NodePath("../AnimationPlayer")
 
