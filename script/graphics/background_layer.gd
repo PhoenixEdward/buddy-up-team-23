@@ -11,12 +11,3 @@ func _ready() -> void:
 		sprite.centered = false
 		sprite.position = (texture.get_size() * subtile_counts) * ((i + 1) * Vector2.RIGHT)
 		add_child(sprite)
-	if get_node("VisibilityNotifier2D") != null:
-		$VisibilityNotifier2D.connect("screen_entered", self, "_on_screen_entered")
-		$VisibilityNotifier2D.connect("screen_exited", self, "_on_screen_exited")
-	hide()
-
-func _on_screen_entered() -> void:
-	show()
-func _on_screen_exited() -> void:
-	hide()
