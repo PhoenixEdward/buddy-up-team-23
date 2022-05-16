@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/museum.mp3-982f3a634b81257a37bb3363ff17cb92.mp3str"
+
+[deps]
+
+source_file="res://asset/audio/music/museum.mp3"
+dest_files=[ "res://.import/museum.mp3-982f3a634b81257a37bb3363ff17cb92.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

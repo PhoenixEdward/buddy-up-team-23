@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/chips_theme.mp3-120f2dca6ff84f28f56f989078dce7ba.mp3str"
+
+[deps]
+
+source_file="res://asset/audio/music/chips_theme.mp3"
+dest_files=[ "res://.import/chips_theme.mp3-120f2dca6ff84f28f56f989078dce7ba.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

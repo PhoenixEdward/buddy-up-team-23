@@ -87,6 +87,7 @@ shape = SubResource( 2 )
 
 [node name="MoveSoundPlayer" type="AudioStreamPlayer" parent="Wheels"]
 stream = ExtResource( 12 )
+volume_db = -6.0
 bus = "SFX"
 
 [node name="BoostSoundPlayer" type="AudioStreamPlayer" parent="Wheels"]
@@ -96,12 +97,12 @@ bus = "SFX"
 
 [node name="JumpSoundPlayer" type="AudioStreamPlayer" parent="Wheels"]
 stream = ExtResource( 14 )
-volume_db = 14.181
+volume_db = 8.0
 bus = "SFX"
 
 [node name="StopSoundPlayer" type="AudioStreamPlayer" parent="Wheels"]
 stream = ExtResource( 13 )
-volume_db = 24.0
+volume_db = 18.0
 bus = "SFX"
 
 [node name="StateMachine" type="Node" parent="."]
