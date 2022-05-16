@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://script/ui/dialogue_box/dialogue_path.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+is_choice = false
+speakers = [ 0, 1, 0, 1, 0, 1 ]
+speech = [ "What did your human worry about?", "My creator? I don’t know. But I think finding the keys will reveal that. Then I can finally rest. I’d like to go into Sleep Mode for 1000 years.", "Why are there so many dinosaurs? Were humans worried about remembering them?", "They were pets.", "Really?!", "No." ]
+next_paths = [  ]

@@ -975,6 +975,18 @@ position = Vector2( -10017, -31 )
 
 [node name="UILayer" parent="." instance=ExtResource( 17 )]
 
+[node name="Label" parent="UILayer" index="0"]
+visible = false
+
+[node name="Label2" parent="UILayer" index="1"]
+visible = false
+
+[node name="Label3" parent="UILayer" index="2"]
+visible = false
+
+[node name="Label4" parent="UILayer" index="3"]
+visible = false
+
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 6, 0 )
 tile_set = ExtResource( 10 )

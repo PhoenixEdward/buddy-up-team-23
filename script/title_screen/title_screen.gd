@@ -11,7 +11,7 @@ func _ready() -> void:
 
 func _on_animation_finished(anim : String) -> void:
 	get_tree().paused = false
-
+	$CenterContainer/VBoxContainer/MarginContainer/VBoxContainer/PlayButton.grab_focus()
 
 func _on_play_button_pressed() -> void:
 	get_tree().change_scene_to(level_1_scene)

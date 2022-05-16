@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource( 1 )
 is_choice = false
-speakers = [ 0, 1, 0, 1 ]
-speech = [ "Junket, can you believe this is the last key?", "I barely remember the last 3.", "Not even the part with the dinosaur?", "The what? Nevermind! Let's go." ]
+speakers = [ 0, 1 ]
+speech = [ "There it is!", "Finally, the last key. I’m so tired." ]
 next_paths = [  ]

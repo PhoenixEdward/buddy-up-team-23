@@ -111,7 +111,6 @@ func _physics_process(delta: float) -> void:
 				body.linear_velocity = lerp(body.linear_velocity, Vector2.ZERO , 0.05)
 			else:
 				body.linear_velocity = Vector2.ZERO
-		$Body/CPUParticles2D.direction = body.linear_velocity.rotated(PI)
 
 # does not require raycasts
 func _set_interest(destination : Vector2) -> void:
@@ -169,6 +168,7 @@ func _on_VisibilityNotifier2D_screen_exited() -> void:
 func _on_VisibilityNotifier2D_screen_entered() -> void:
 	if not timer.is_stopped():
 		timer.stop()
+
 
 func _on_Timer_timeout() -> void:
 	_reset = true

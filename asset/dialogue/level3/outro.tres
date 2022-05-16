@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource( 1 )
 is_choice = false
-speakers = [ 0, 1, 0 ]
-speech = [ "What's happening, Junket!", "It's the key's they're...", "It's so beautiful..." ]
+speakers = [ 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 ]
+speech = [ "What's happening, Junket!", "It's the key's they're...", "It's so beautiful...", "This is my creator’s last message?!", "Look at all of these seeds! So many different types! I don’t think I have any data on these types of fruits. None of these herbs here either.", "…It’s going to take forever to plant them all", "It’s okay, Junket! I’ll help you. It will only take half as long if we’re doing it together. How about you take a rest before we head out?", "That actually sounds tolerable.", "That’s the spirit! Now go on, take that rest. I’ll wake you up when it’s time to go", "Thanks Chip. Powering down in 3… 2… 1." ]
 next_paths = [  ]
