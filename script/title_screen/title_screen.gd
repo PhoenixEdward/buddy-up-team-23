@@ -20,8 +20,8 @@ func _on_play_button_pressed() -> void:
 func _on_settings_button_pressed() -> void:
 	if GameState.mobile_ui_enabled:
 		GameState.mobile_ui_enabled = false
-		$CenterContainer/VBoxContainer/SettingsButton.text = "Enable Mobile"
+		$CenterContainer/VBoxContainer/MarginContainer/VBoxContainer/SettingsButton.text = "Enable Mobile"
 	else:
 		GameState.mobile_ui_enabled  = true
-		$CenterContainer/VBoxContainer/SettingsButton.text = "Disable Mobile"
+		$CenterContainer/VBoxContainer/MarginContainer/VBoxContainer/SettingsButton.text = "Disable Mobile"
 
