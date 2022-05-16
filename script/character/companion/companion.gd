@@ -61,10 +61,6 @@ func _on_player_died() -> void:
 
 
 func _process(delta: float) -> void:
-	if not audio_drone and $Body/AudioStreamPlayer2D.playing and body.linear_velocity != Vector2.ZERO:
-		$Body/AudioStreamPlayer2D.stop()
-	elif not $Body/AudioStreamPlayer2D.playing:
-		$AudioStreamPlayer2D.play()
 	if body.linear_velocity.x > 0:
 		_change_direction(false)
 	elif body.linear_velocity.x < 0:
@@ -98,7 +94,7 @@ func _physics_process(delta: float) -> void:
 			body.linear_velocity = Vector2.ZERO
 			_reset = false
 		
-		player_ray.cast_to = _player.player_body.global_position - body.global_position
+		player_ray.cast_to = _player.body.global_position - body.global_position
 		
 		if player_ray.is_colliding() and player_ray.get_collider() != _player.player_body:
 			_on_VisibilityNotifier2D_screen_exited()
