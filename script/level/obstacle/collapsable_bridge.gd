@@ -36,6 +36,6 @@ func _physics_process(delta: float) -> void:
 				_collapsing = false
 
 func _on_body_entered(body : Node) -> void:
-	if body is Wheels:
+	if body is PlayerBody:
 		if collapsable:
 			_collapsing = true

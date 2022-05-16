@@ -16,15 +16,16 @@ func physics_update(delta : float) -> void:
 	
 	if Input.is_action_pressed("move"):
 		movement_vec = Vector2.ONE
-
-	if movement_vec != Vector2.ZERO:
-		if not _player.move_sound.playing:
-			_player.move_sound.play(_rng.randf_range(0, _player.move_sound.stream.get_length()))
-	else:
-		if _player.move_sound.playing:
-			_player.move_sound.stop()
-			_player.stop_sound.play()
 	
+	if not _player.is_animating:
+		if movement_vec != Vector2.ZERO:
+			if not _player.move_sound.playing:
+				_player.move_sound.play(_rng.randf_range(0, _player.move_sound.stream.get_length()))
+		else:
+			if _player.move_sound.playing:
+				_player.move_sound.stop()
+				_player.stop_sound.play()
+		
 	if not _player.wheels.is_on_floor():
 		_player.wheels.velocity.y = lerp(_player.wheels.velocity.y, _player.gravity, 0.05)
 	else:

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/jetpack.mp3-4addcb1e131470ee3e3abfc7d3540831.mp3str"
+
+[deps]
+
+source_file="res://asset/audio/sfx/companion/jetpack.mp3"
+dest_files=[ "res://.import/jetpack.mp3-4addcb1e131470ee3e3abfc7d3540831.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

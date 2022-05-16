@@ -158,7 +158,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Vanadium Labs Game"
+config/name="Junket And Chip"
 config/description="Buddy Up Game Jam Spring 2022"
 run/main_scene="res://scene/title_screen/SplashScreen.tscn"
 config/icon="res://meta/logo.png"
@@ -227,4 +227,5 @@ quality/driver/driver_name="GLES2"
 2d/snapping/use_gpu_pixel_snap=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+environment/default_clear_color=Color( 0.141176, 0.141176, 0.141176, 1 )
 environment/default_environment="res://meta/default_env.tres"
